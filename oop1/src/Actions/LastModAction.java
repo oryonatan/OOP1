@@ -8,7 +8,7 @@ import java.text.ParsePosition;
 import Exceptions.BadParamException;
 import Exceptions.PermissionsException;
 
-public class LastModAction {
+public class LastModAction implements Action{
 	private Date lastmod;
 
 	public LastModAction(String param) throws BadParamException

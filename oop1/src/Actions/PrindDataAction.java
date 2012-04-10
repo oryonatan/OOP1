@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class PrindDataAction {
+public class PrindDataAction implements Action{
 
 	public void Exec(File[] files) throws IOException
 	{

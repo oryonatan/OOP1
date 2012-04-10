@@ -4,7 +4,7 @@ import java.io.File;
 import Exceptions.BadParamException;
 import Exceptions.PermissionsException;
 
-public class WriteAction {
+public class WriteAction implements Action{
 	private boolean write;
 	
 	public WriteAction(String param) throws BadParamException

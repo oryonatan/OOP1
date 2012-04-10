@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import Exceptions.PermissionsException;
 
-public class CopyAction {
+public class CopyAction implements Action{
 	private String target;
 
 	

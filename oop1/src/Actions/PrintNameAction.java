@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class PrintNameAction {
+public class PrintNameAction implements Action{
 
 	
 	public void Exec(File[] files) throws IOException

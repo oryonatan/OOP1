@@ -1,10 +1,12 @@
 package Actions;
 
 import java.io.File;
+import java.io.IOException;
+
 import Exceptions.BadParamException;
 import Exceptions.PermissionsException;
 
-public class ExecAction {
+public class ExecAction implements Action{
 	private boolean exec;
 	
 	
@@ -17,7 +19,7 @@ public class ExecAction {
 		throw new BadParamException();
 			
 	}
-	public void Exec(File[] files) throws PermissionsException 
+	public void Exec(File[] files) throws IOException, PermissionsException
 	{
 		try
 		{
