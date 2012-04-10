@@ -2,7 +2,7 @@ package Filters;
 import java.io.File;
 import java.io.FileFilter;
 
-class EndsWithFilter extends YesNoFilter implements FileFilter {
+class EndsWithFilter extends NegatableFilter implements FileFilter {
 	private String arg = new String();
 
 	public EndsWithFilter(String arg) {

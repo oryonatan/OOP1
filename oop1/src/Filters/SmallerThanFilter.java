@@ -3,11 +3,10 @@ import java.io.File;
 import java.io.FileFilter;
 
 
-public class SmallerThanFilter extends YesNoFilter implements FileFilter {
-	private double size;
-	
-	public SmallerThanFilter(double size) {
-		this.size = size;
+public class SmallerThanFilter extends DoubleFilter implements FileFilter {
+
+	public SmallerThanFilter(String numberString) {
+		super(numberString);
 	}
 
 	@Override
