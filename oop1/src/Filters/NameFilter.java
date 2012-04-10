@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileFilter;
 
 
-public class NameFilter extends YesNoFilter implements FileFilter {
+public class NameFilter extends NegatableFilter implements FileFilter {
 	private String name ;
 	
 	public NameFilter(String name) {
