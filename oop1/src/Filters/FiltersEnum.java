@@ -4,6 +4,10 @@ import java.lang.Class;
 
 import Exceptions.BadParamException;
 
+/**Enum containing filter type classes , used for dynamic generation of filters
+ * @author yonatan,yuli
+ *
+ */
 public enum FiltersEnum{
 	BEFORE(BeforeFilter.class),
 	AFTER(AfterFilter.class),
@@ -23,10 +27,18 @@ public enum FiltersEnum{
 		this.classType = classType;
 	}
 
-	public static FiltersEnum fromValue(String value) throws BadParamException{
-		if (value != null){
+	/**Returns a filter using a string , since the filters appear in the file in lowecase , we need
+	 * to upper case the,
+	 * @param filterName the name of the filter needed
+	 * @return filter class appropriate for the name.
+	 * @throws BadParamException
+	 */
+	public static FiltersEnum fromValue(String filterName) throws BadParamException{
+		if (filterName != null){
+			//Iterate over values()
 			for (FiltersEnum filter : values()){
-				if(filter.name().equals(value.toUpperCase())){
+				//Look inside object's name property.
+				if(filter.name().equals(filterName.toUpperCase())){
 					return filter;
 				}
 			}

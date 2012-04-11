@@ -1,8 +1,19 @@
 package Filters;
 
+/**
+ * Filter that can be reversed
+ * 
+ * @author yonatan,yuli
+ * 
+ */
 public class NegatableFilter {
 	protected boolean negative = false;
-	public void negate(){
-		negative=!negative;
+
+	/**
+	 * Reverses the filter behavior.
+	 * 
+	 */
+	public void negate() {
+		negative = !negative;
 	}
 }
