@@ -6,7 +6,12 @@ import java.util.ArrayList;
 
 public class FilterLine implements FileFilter {
 	public ArrayList<FileFilter> filters = new ArrayList<FileFilter>();
+	public FilterLine() {
+	}
 	public FilterLine(FileFilter filter) {
+		filters.add(filter);
+	}
+	public void add(FileFilter filter){
 		filters.add(filter);
 	}
 	@Override

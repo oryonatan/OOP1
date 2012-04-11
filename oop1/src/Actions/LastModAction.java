@@ -3,6 +3,7 @@ package Actions;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TreeSet;
 import java.text.ParsePosition;
 
 import Exceptions.BadParamException;
@@ -16,7 +17,7 @@ public class LastModAction implements Action{
 		lastmod = new SimpleDateFormat("dd/MM/yyyy").parse(param, new ParsePosition(0));
 			
 	}
-	public void Exec(File[] files) throws PermissionsException
+	public void Exec(TreeSet<File> files) throws PermissionsException
 	{
 		try
 		{

@@ -9,7 +9,6 @@ public class fileComparator implements Comparator<File>{
 	{
 		String nameFstFile = ((File)fstfile).getName();
 		String nameScndFile = ((File)scndfile).getName();
-		
 		return nameFstFile.compareTo(nameScndFile);
 	}
 	

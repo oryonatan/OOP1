@@ -8,6 +8,9 @@ public class Parser {
 	
 	
 	
+	private static final String ORDER = "ORDER";
+	private static final String ACTION = "ACTION";
+
 	public ArrayList<String[]> parseIntoBlocks(String[] lines)
 	{
 		ArrayList<String[]> blocks = new ArrayList<String[]>();
@@ -49,17 +52,17 @@ public class Parser {
 		int actionsSection = 0;
 		for (String line: lines)
 		{
-			if ("ACTION".equals(line))
+			if (ACTION.equals(line))
 			{
 				filters = Arrays.copyOfRange(lines, 1 , i);
 				actionsSection = i + 1 ;
 			}
-			if ("ORDER".equals(line) && actionsSection!= 0)
+			if (ORDER.equals(line) && actionsSection!= 0)
 			{
 				actions = Arrays.copyOfRange(lines, actionsSection, i);
 				order = Arrays.copyOfRange(lines, i + 1, lines.length);
 			}
-			else if ("ORDER".equals(line) && actionsSection == 0)
+			else if (ORDER.equals(line) && actionsSection == 0)
 			{
 				//!!! throw section not right
 			}

@@ -14,6 +14,9 @@ public class FileFilterBox implements FileFilter {
 	}
 
 	public boolean accept(File pathname) {
+		if (pathname.isDirectory() ){
+			return false;
+		}
 		for (FilterLine filtersLine : filterLines){
 			if (!filtersLine.accept(pathname)) return false;
 		}

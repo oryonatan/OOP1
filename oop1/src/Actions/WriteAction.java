@@ -1,6 +1,8 @@
 package Actions;
 
 import java.io.File;
+import java.util.TreeSet;
+
 import Exceptions.BadParamException;
 import Exceptions.PermissionsException;
 
@@ -16,7 +18,7 @@ public class WriteAction implements Action{
 		throw new BadParamException();
 			
 	}
-	public void Exec(File[] files) throws PermissionsException
+	public void Exec(TreeSet<File> files) throws PermissionsException
 	{
 		try
 		{

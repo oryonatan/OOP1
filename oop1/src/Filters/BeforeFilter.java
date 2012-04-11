@@ -15,7 +15,7 @@ public class BeforeFilter extends DateFilter implements FileFilter{
 
 	@Override
 	public boolean accept(File pathname) {
-		return date.before(new Date(pathname.lastModified())) ^ negative;
+		return date.after(new Date(pathname.lastModified())) ^ negative;
 	}
 
 }

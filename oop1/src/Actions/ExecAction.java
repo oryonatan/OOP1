@@ -2,6 +2,7 @@ package Actions;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.TreeSet;
 
 import Exceptions.BadParamException;
 import Exceptions.PermissionsException;
@@ -19,7 +20,7 @@ public class ExecAction implements Action{
 		throw new BadParamException();
 			
 	}
-	public void Exec(File[] files) throws IOException, PermissionsException
+	public void Exec(TreeSet<File> files) throws IOException, PermissionsException
 	{
 		try
 		{
