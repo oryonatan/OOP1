@@ -1,4 +1,4 @@
-package Filters;
+package filters;
 
 /**
  * Abstract class for filters that get a double as string

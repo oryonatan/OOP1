@@ -1,4 +1,4 @@
-package Parser;
+package parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import Actions.Action;
-import Exceptions.BadParamException;
-import Exceptions.PermissionsException;
-import Filters.FileFilterBox;
-import Filters.FolderFilter;
+import actions.Action;
+import exceptions.BadParamException;
+import exceptions.PermissionsException;
+import filters.FileFilterBox;
+import filters.FolderFilter;
 
 /** Execution block object , should be runnable from MyFileScript, instances
  * containing filters,actions,order type and comments are created by
@@ -25,6 +25,7 @@ public class Block {
 	private Comparator<File> order;
 	private String[] comments;
 	TreeSet<File> files ;
+	private String path;
 
 /*	public static void main(String[] args) throws BadParamException {
 		FileFilterBox fBox = new FileFilterBox();
@@ -39,8 +40,9 @@ public class Block {
 	 * @param order the order type
 	 * @param comments list of comments on block
 	 */
-	public Block(FileFilterBox filters, ArrayList<Action> actions,
+	public Block(String path,FileFilterBox filters, ArrayList<Action> actions,
 			Comparator<File> order,String[] comments) {
+		this.path = path;
 		this.filters = filters;
 		this.actions = actions;
 		this.order =  order;
@@ -49,12 +51,11 @@ public class Block {
 	}
 
 	/**Runs the block on the given path
-	 * @param path the path to run the block on.
 	 * @throws BadParamException
 	 */
-	public void run(String path) throws BadParamException {
-		listAndFilterFilesOrdered(path);
-		doActions();		
+	public void run() throws BadParamException {
+		listAndFilterFilesOrdered();
+		doactions();		
 		printComments();
 	}
 
@@ -70,7 +71,7 @@ public class Block {
 	/**Runs all the actions on the block
 	 * @throws BadParamException
 	 */
-	private void doActions() throws BadParamException {
+	private void doactions() throws BadParamException {
 		for (Action action:actions){
 			try {
 				action.Exec(files);
@@ -86,10 +87,10 @@ public class Block {
 	 * @param path the path to run the filters on.
 	 * @throws BadParamException
 	 */
-	private void listAndFilterFilesOrdered(String path) throws BadParamException {
+	private void listAndFilterFilesOrdered() throws BadParamException {
 		//Create TreeSet with order
 		files = new TreeSet<File>(this.order);
-		File sourceDir = new File(path);
+		File sourceDir = new File(this.path);
 		if (!sourceDir.isDirectory()) {
 			throw new BadParamException();
 		}

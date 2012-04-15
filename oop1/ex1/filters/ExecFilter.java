@@ -1,9 +1,9 @@
-package Filters;
+package filters;
 
 import java.io.File;
 import java.io.FileFilter;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**
  * Filter that finds files with execution premission

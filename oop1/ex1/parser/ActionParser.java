@@ -1,11 +1,11 @@
-package Parser;
+package parser;
 
-import Actions.ActionsEnum;
-import Actions.Action;
+import actions.ActionsEnum;
+import actions.Action;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 public class ActionParser {
 	private static final int FILTER_TYPE = 0;
@@ -15,7 +15,7 @@ public class ActionParser {
 
 	public static ArrayList<Action> parseLines(String sourceDir, String[] lines) throws BadParamException {
 		String[] params;
-		ArrayList<Action> actions = null;
+		ArrayList<Action> actions = new ArrayList<Action>();
 		for (String line : lines) {
 			params = line.split("%");
 			actions.add(ActionFactory(sourceDir,params));
@@ -28,7 +28,7 @@ public class ActionParser {
 		Action action = null;
 		try
 		{
-			Constructor ctor = ActionsEnum.valueOf(params[FILTER_TYPE]).classType.getConstructor(String.class);
+			Constructor<? extends Action> ctor = ActionsEnum.valueOf(params[FILTER_TYPE]).classType.getConstructor(String.class);
 			action = (Action) ctor.newInstance(sourceDir + params[ARGUMENTS]);
 		}
         catch (java.lang.Exception e) {

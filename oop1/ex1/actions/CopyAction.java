@@ -1,4 +1,4 @@
-package Actions;
+package actions;
 import java.io.File;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.TreeSet;
 
-import Exceptions.PermissionsException;
+import exceptions.PermissionsException;
 
 public class CopyAction implements Action{
 	private String target;

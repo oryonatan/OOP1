@@ -1,10 +1,10 @@
-package Filters;
+package filters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**
  * Abstract class for filters that uses dates.

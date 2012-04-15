@@ -1,10 +1,10 @@
-package Filters;
+package filters;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Date;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**
  * Filter files modified after a given date

@@ -1,4 +1,4 @@
-package Parser;
+package parser;
 
 
 
@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import Actions.Action;
-import Exceptions.BadParamException;
-import Filters.FileFilterBox;
+import actions.Action;
+import exceptions.BadParamException;
+import filters.FileFilterBox;
 
 
 public class Parser {
@@ -23,7 +23,7 @@ public class Parser {
 	private static final String ORDER = "ORDER";
 	private static final String ACTION = "ACTION";
 
-	public ArrayList<String[]> parseIntoBlocks(String[] lines)
+	public static ArrayList<String[]> parseIntoBlocks(String[] lines)
 	{
 		ArrayList<String[]> blocks = new ArrayList<String[]>();
 		if (!"FILTER".equals(lines[0]))
@@ -47,11 +47,11 @@ public class Parser {
 		
 	}
 	
-	public ArrayList<String[]> parseComments(ArrayList<String[]> blocks)
+	public static ArrayList<String[]> parseComments(ArrayList<String[]> blocks)
 	{
 		String[] block = null;
-		ArrayList<String> newBlock = null;
-		ArrayList<String> commentsBlock= null;
+		ArrayList<String> newBlock = new ArrayList<String>();
+		ArrayList<String> commentsBlock= new ArrayList<String>();
 		
 		ArrayList<String[]> commentsBlocks= null;
 		for (int i=0; i< Array.getLength(blocks); i++)
@@ -69,13 +69,11 @@ public class Parser {
 				}
 			}
 			blocks.set(i, (newBlock.toArray(new String[newBlock.size()])) );
-			commentsBlocks.add((commentsBlock.toArray(new String[commentsBlock.size()])));
 		}
-		
 		return commentsBlocks;
 	}
 	
-	public String[][] parseIntoSections(String[] lines)
+	public static String[][] parseIntoSections(String[] lines)
 	{
 		String[] filters = null;
 		String[] actions = null;
@@ -103,7 +101,7 @@ public class Parser {
 		return new String[][] {filters, actions, order};
 	}
 
-	public ArrayList<Block> parse(String sourceDir,String commandsFile) throws BadParamException, IOException
+	public static ArrayList<Block> parse(String sourceDir,String commandsFile) throws BadParamException, IOException
 	{
 		String[] lines = readLines(commandsFile);
 		ArrayList<String[]> BlockLines = parseIntoBlocks(lines);
@@ -121,7 +119,7 @@ public class Parser {
 			ArrayList<Action> actions= 	ActionParser.parseLines(sourceDir,sections[1]);
 			Comparator<File> order = 	OrderParser.parseLines(sections[2]);
 			
-			blocks.add(new Block( filters, actions, order, commentsBlocks.get(i)));
+			blocks.add(new Block(sourceDir, filters, actions, order, commentsBlocks.get(i)));
 			
 		}
 		return blocks;
@@ -131,7 +129,7 @@ public class Parser {
 	
 
 
-	public String[] readLines(String filename) throws IOException {
+	public static String[] readLines(String filename) throws IOException {
 		FileReader fileReader = new FileReader(filename);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		ArrayList<String> lines = new ArrayList<String>();

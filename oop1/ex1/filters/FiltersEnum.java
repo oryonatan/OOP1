@@ -1,8 +1,9 @@
-package Filters;
+package filters;
 
+import java.io.FileFilter;
 import java.lang.Class;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**Enum containing filter type classes , used for dynamic generation of filters
  * @author yonatan,yuli
@@ -20,9 +21,9 @@ public enum FiltersEnum{
 	HIDDEN(HiddenFilter.class);
 	
 
-	public Class<?> classType;
+	public Class<? extends FileFilter> classType;
 	
-	FiltersEnum(Class<?> classType)
+	FiltersEnum(Class<? extends FileFilter> classType)
 	{
 		this.classType = classType;
 	}

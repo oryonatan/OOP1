@@ -1,6 +1,6 @@
-package Filters;
+package filters;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**
  * Filter that gets as a parameter a YES or NO , to decide how to behave

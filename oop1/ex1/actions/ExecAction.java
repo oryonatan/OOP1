@@ -1,11 +1,11 @@
-package Actions;
+package actions;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.TreeSet;
 
-import Exceptions.BadParamException;
-import Exceptions.PermissionsException;
+import exceptions.BadParamException;
+import exceptions.PermissionsException;
 
 public class ExecAction implements Action{
 	private boolean exec;

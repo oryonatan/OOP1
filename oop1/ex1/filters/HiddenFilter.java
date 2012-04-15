@@ -1,12 +1,12 @@
-package Filters;
+package filters;
 
 import java.io.File;
 import java.io.FileFilter;
 
-import Exceptions.BadParamException;
+import exceptions.BadParamException;
 
 /**
- * Filters hidden files
+ * filters hidden files
  * 
  * @author yonatan,yuli
  * 

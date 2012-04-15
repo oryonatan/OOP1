@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class PermissionsException extends Exception {
 	private static final long serialVersionUID = 1L;

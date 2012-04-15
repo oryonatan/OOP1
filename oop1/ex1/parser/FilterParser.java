@@ -1,17 +1,16 @@
-package Parser;
+package parser;
 
 import java.io.FileFilter;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
-import Exceptions.BadParamException;
-import Filters.FileFilterBox;
-import Filters.FilterLine;
-import Filters.FiltersEnum;
-import Filters.NegatableFilter;
+import exceptions.BadParamException;
+import filters.FileFilterBox;
+import filters.FilterLine;
+import filters.FiltersEnum;
+import filters.NegatableFilter;
 
 /**
- * Parser for filters
+ * parser for filters
  * 
  * @author yonatan,yuli
  * 
@@ -81,13 +80,13 @@ public class FilterParser {
 		}
 		try {
 			// Deserialize the filter type from the enum.
-			@SuppressWarnings("unchecked")
-			Class<FileFilter> filterType = (Class<FileFilter>) FiltersEnum
+			
+			Class<? extends FileFilter> filterType = (Class<? extends FileFilter>) FiltersEnum
 					.fromValue(params[FILTER_TYPE]).classType;
 			// Create constructor for the given filter , and instantiate it .
 			// Notice that using newInstance a class without getting the correct
 			// ctor for the param type , will not allow passing parameters.
-			Constructor<FileFilter> ctor = filterType
+			Constructor<? extends FileFilter> ctor = filterType
 					.getConstructor(new Class[] { String.class });
 			filter = ctor.newInstance(params[ARGUMENTS]);
 			// Negate negatives

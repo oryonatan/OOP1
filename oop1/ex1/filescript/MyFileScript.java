@@ -1,5 +1,12 @@
-import java.io.File;
+package filescript;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import exceptions.BadParamException;
+
+import parser.Block;
+import parser.Parser;
 
 
 
@@ -10,13 +17,14 @@ public class MyFileScript {
 
 	/**
 	 * @param args
+	 * @throws IOException 
+	 * @throws BadParamException 
 	 */
-	public static void main(String[] args) {
-		File sourceDir = new File(args[SOURCE_DIR]);
-		File commandsFile = new File(args[COMMANDS_FILE_LOCATION]);
-		/*ArrayList<Block> blocks = new Parser.parse(sourceDir,commandsFile);
-		 * 
-		asd*/
+	public static void main(String[] args) throws BadParamException, IOException {		
+		ArrayList<Block> blocks = Parser.parse(args[SOURCE_DIR], args[COMMANDS_FILE_LOCATION]);
+		for (Block block:blocks){
+			block.run();
+		}
 	}
 
 }

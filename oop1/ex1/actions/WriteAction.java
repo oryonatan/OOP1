@@ -1,10 +1,10 @@
-package Actions;
+package actions;
 
 import java.io.File;
 import java.util.TreeSet;
 
-import Exceptions.BadParamException;
-import Exceptions.PermissionsException;
+import exceptions.BadParamException;
+import exceptions.PermissionsException;
 
 public class WriteAction implements Action{
 	private boolean write;

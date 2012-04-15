@@ -1,6 +1,9 @@
-package Order;
+package order;
 
-import Exceptions.BadParamException;
+import java.io.File;
+import java.util.Comparator;
+
+import exceptions.BadParamException;
 
 
 
@@ -10,9 +13,9 @@ public enum OrdersEnum {
 	mod(modComparator.class), 
 	size(sizeComparator.class);
 
-	public Class<?> classType;
+	public Class<? extends Comparator<File>> classType;
 
-	OrdersEnum(Class<?> classType) {
+	OrdersEnum(Class<? extends Comparator<File>> classType) {
 		this.classType = classType;
 	}
 

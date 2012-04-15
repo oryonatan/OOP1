@@ -1,4 +1,4 @@
-package Actions;
+package actions;
 
 import java.lang.Class;
 
@@ -11,11 +11,11 @@ public enum ActionsEnum {
 	exec(ExecAction.class),
 	write(WriteAction.class);
 	
-	public Class classType;
+	public Class<? extends Action> classType;
 	
-	ActionsEnum(Class classType)
+	ActionsEnum(Class<? extends Action> classType)
 	{
-		this.classType = classType;
+		this.classType = (Class<? extends Action>) classType;
 	}
 
 }
