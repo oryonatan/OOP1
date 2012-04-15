@@ -1,3 +1,4 @@
+package Parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Block {
 	private FileFilterBox filters;
 	private ArrayList<Action> actions;
 	private Comparator<File> order;
-	private ArrayList<String> comments;
+	private String[] comments;
 	TreeSet<File> files ;
 
 /*	public static void main(String[] args) throws BadParamException {
@@ -39,7 +40,7 @@ public class Block {
 	 * @param comments list of comments on block
 	 */
 	public Block(FileFilterBox filters, ArrayList<Action> actions,
-			Comparator<File> order,ArrayList<String> comments) {
+			Comparator<File> order,String[] comments) {
 		this.filters = filters;
 		this.actions = actions;
 		this.order =  order;

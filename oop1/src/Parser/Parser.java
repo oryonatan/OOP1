@@ -1,8 +1,20 @@
 package Parser;
 
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Comparator;
+
+import Actions.Action;
+import Exceptions.BadParamException;
+import Filters.FileFilterBox;
+
 
 public class Parser {
 	
@@ -37,10 +49,30 @@ public class Parser {
 	
 	public ArrayList<String[]> parseComments(ArrayList<String[]> blocks)
 	{
-		for (ArrayList<String[]> block: blocks)
+		String[] block = null;
+		ArrayList<String> newBlock = null;
+		ArrayList<String> commentsBlock= null;
+		
+		ArrayList<String[]> commentsBlocks= null;
+		for (int i=0; i< Array.getLength(blocks); i++)
 		{
-			for (String line: lines)
+			block = blocks.get(i);
+			for (String line: block)
+			{
+				if (line.startsWith("$"))
+				{
+					commentsBlock.add(line);
+				}
+				else
+				{
+					newBlock.add(line);
+				}
+			}
+			blocks.set(i, (newBlock.toArray(new String[newBlock.size()])) );
+			commentsBlocks.add((commentsBlock.toArray(new String[commentsBlock.size()])));
 		}
+		
+		return commentsBlocks;
 	}
 	
 	public String[][] parseIntoSections(String[] lines)
@@ -70,4 +102,45 @@ public class Parser {
 		
 		return new String[][] {filters, actions, order};
 	}
+
+	public ArrayList<Block> parse(String sourceDir,String commandsFile) throws BadParamException, IOException
+	{
+		String[] lines = readLines(commandsFile);
+		ArrayList<String[]> BlockLines = parseIntoBlocks(lines);
+		ArrayList<String[]> commentsBlocks = parseComments(BlockLines);
+		ArrayList<Block> blocks= new ArrayList<Block>() ;
+		String[][] sections = null;
+		
+		for (int i = 0; i < BlockLines.size(); i++)
+		{
+			String[] blockLine = BlockLines.get(i);
+			
+			sections = parseIntoSections(blockLine);
+			
+			FileFilterBox filters = 	FilterParser.parseLines(sections[0]);
+			ArrayList<Action> actions= 	ActionParser.parseLines(sections[1]);
+			Comparator<File> order = 		OrderParser.parseLines(sections[2]);
+			
+			blocks.add(new Block( filters, actions, order, commentsBlocks.get(i)));
+			
+		}
+		return blocks;
+		
+		
+	}
+	
+
+
+	public String[] readLines(String filename) throws IOException {
+		FileReader fileReader = new FileReader(filename);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		ArrayList<String> lines = new ArrayList<String>();
+		String line = null;
+		while ((line = bufferedReader.readLine()) != null) {
+			lines.add(line);
+		}
+		bufferedReader.close();
+		return lines.toArray(new String[lines.size()]);
+	}
+	
 }

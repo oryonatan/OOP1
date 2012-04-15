@@ -1,16 +1,21 @@
 package Parser;
 
+import java.io.File;
 import java.util.Comparator;
 
 import Exceptions.BadParamException;
 import Order.OrdersEnum;
 
 public class OrderParser {
-	public Comparator<?> parseLines(String line) throws BadParamException {
-		return OrderFactory(line);
+	public static Comparator<File> parseLines(String[] lines) throws BadParamException {
+		if (lines.length > 1)
+		{
+			//!!! throw blabla
+		}
+		return OrderFactory(lines[0]);
 	}
 
-	public Comparator<?> OrderFactory(String line) throws BadParamException {
+	private static Comparator<File> OrderFactory(String line) throws BadParamException {
 
 		Comparator<?> comp = null;
 		try {

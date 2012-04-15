@@ -13,20 +13,17 @@ public class ActionParser {
    
 
 
-	public ArrayList<Action> parseLines(String[] lines) throws BadParamException {
+	public static ArrayList<Action> parseLines(String[] lines) throws BadParamException {
 		String[] params;
 		ArrayList<Action> actions = null;
 		for (String line : lines) {
-			if (line.startsWith("$"))
-				continue;
-
 			params = line.split("%");
 			actions.add(ActionFactory(params));
 		}
 		return actions;
 	}
 
-	public Action ActionFactory(String[] params) throws BadParamException {
+	private static Action ActionFactory(String[] params) throws BadParamException {
 		
 		Action action = null;
 		try
