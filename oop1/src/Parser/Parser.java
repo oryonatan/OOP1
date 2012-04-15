@@ -118,8 +118,8 @@ public class Parser {
 			sections = parseIntoSections(blockLine);
 			
 			FileFilterBox filters = 	FilterParser.parseLines(sections[0]);
-			ArrayList<Action> actions= 	ActionParser.parseLines(sections[1]);
-			Comparator<File> order = 		OrderParser.parseLines(sections[2]);
+			ArrayList<Action> actions= 	ActionParser.parseLines(sourceDir,sections[1]);
+			Comparator<File> order = 	OrderParser.parseLines(sections[2]);
 			
 			blocks.add(new Block( filters, actions, order, commentsBlocks.get(i)));
 			
