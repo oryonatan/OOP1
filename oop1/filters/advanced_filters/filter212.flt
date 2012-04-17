@@ -1,0 +1,13 @@
+FILTER
+$ 2 Sessions in one file
+prefix%file
+ACTION
+print_name
+ORDER
+file
+FILTER
+prefix%same
+ACTION
+print_name
+ORDER
+file

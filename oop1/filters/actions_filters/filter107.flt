@@ -1,0 +1,7 @@
+FILTER
+$ copy a big file example
+file%file7.jpg
+ACTION
+copy%outputDir
+ORDER
+abs

@@ -1,0 +1,7 @@
+FILTER
+$ mod order for files with the same modification date
+prefix%same_date
+ACTION
+print_name
+ORDER
+mod

@@ -1,0 +1,51 @@
+FILTER
+$ M
+$ a
+$ n
+$ y
+prefix%file
+$ C
+$ o
+$ m
+$ m
+$ e
+$ n
+$ t
+$ s
+ACTION
+$ i
+$ n
+print_name
+$ O
+$ n
+$ e
+ORDER
+file
+$ F
+$ i
+$ l
+$ e
+FILTER
+$ A
+$ r
+$ e
+suffix%2.txt
+$ t
+$ h
+$ e
+$ y
+ACTION
+$ A
+$ l
+$ l
+print_name
+$ P
+$ r
+$ i
+$ n
+$ t
+$ e
+$ d
+ORDER
+$ ?
+file

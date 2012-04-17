@@ -1,0 +1,7 @@
+FILTER
+$ Simple writable%YES%NOT test
+writable%YES%NOT
+ACTION
+print_name
+ORDER
+abs

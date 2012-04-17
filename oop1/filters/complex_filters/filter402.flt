@@ -1,0 +1,7 @@
+FILTER
+$ simple or filter with not suffix on one of the literals
+greater_than%0.5%NOT writable%YES
+ACTION
+print_data
+ORDER
+abs

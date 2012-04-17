@@ -1,0 +1,7 @@
+FILTER
+$ mod order example
+prefix%file
+ACTION
+print_name
+ORDER
+mod

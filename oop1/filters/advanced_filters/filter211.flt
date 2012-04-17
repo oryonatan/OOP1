@@ -1,0 +1,7 @@
+FILTER
+$ Size order for files with the same size
+prefix%same_size
+ACTION
+print_name
+ORDER
+size

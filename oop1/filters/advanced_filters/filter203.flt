@@ -1,0 +1,8 @@
+FILTER
+$ AND filter with an OR filter with NOT suffix
+prefix%file%NOT prefix%file2
+greater_than%0.5
+ACTION
+print_name
+ORDER
+abs

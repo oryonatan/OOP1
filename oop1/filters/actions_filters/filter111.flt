@@ -1,0 +1,13 @@
+FILTER
+$ 2 sections in a file example
+file%file11.txt
+ACTION
+exec%NO
+ORDER
+abs
+FILTER
+file%file111.txt
+ACTION
+write%NO
+ORDER
+abs

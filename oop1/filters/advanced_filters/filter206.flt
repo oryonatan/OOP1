@@ -1,0 +1,7 @@
+FILTER
+$ prefix test
+prefix%same
+ACTION
+print_name
+ORDER
+abs

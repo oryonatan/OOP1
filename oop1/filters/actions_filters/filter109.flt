@@ -1,0 +1,9 @@
+FILTER
+$ multiple actions
+file%file9.txt
+ACTION
+exec%NO
+write%NO
+copy%outputDir
+ORDER
+abs

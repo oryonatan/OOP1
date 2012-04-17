@@ -1,0 +1,8 @@
+FILTER
+$ complex filter
+greater_than%0.5%NOT executable%NO hidden%NO writable%NO%NOT
+after%22/01/2011
+ACTION
+print_data
+ORDER
+abs

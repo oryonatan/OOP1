@@ -1,0 +1,7 @@
+FILTER
+$ hidden%YES test
+hidden%YES
+ACTION
+print_name
+ORDER
+abs

@@ -1,0 +1,6 @@
+FILTER
+greater_than%0.01
+$ No actions in ACTION subsection
+ACTION
+ORDER
+abs

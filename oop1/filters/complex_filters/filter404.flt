@@ -1,0 +1,8 @@
+FILTER
+$ AND filter with an 2 OR filters and a NOT suffix
+greater_than%0.5%NOT writable%NO
+after%12/10/2010 executable%NO
+ACTION
+print_data
+ORDER
+abs

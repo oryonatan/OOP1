@@ -1,0 +1,8 @@
+FILTER
+$ multiple actions test
+writable%YES
+ACTION
+print_data
+print_name
+ORDER
+abs

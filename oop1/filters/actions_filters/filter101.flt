@@ -1,0 +1,7 @@
+FILTER
+$ exec no action example
+file%file1.txt
+ACTION
+exec%NO
+ORDER
+abs

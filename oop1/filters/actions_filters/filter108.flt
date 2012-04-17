@@ -1,0 +1,7 @@
+FILTER
+$ recursive copy test
+file%file8.txt
+ACTION
+copy%outputDir/
+ORDER
+abs

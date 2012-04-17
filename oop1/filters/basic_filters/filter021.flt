@@ -1,0 +1,7 @@
+FILTER
+$ greater_than 0 - edge case
+greater_than%0
+ACTION
+print_name
+ORDER
+abs

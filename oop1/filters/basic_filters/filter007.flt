@@ -1,0 +1,7 @@
+FILTER
+$ Simple before test
+before%01/02/2012
+ACTION
+print_name
+ORDER
+abs

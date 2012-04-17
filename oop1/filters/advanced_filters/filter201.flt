@@ -1,0 +1,7 @@
+FILTER
+$ simple or filter example
+prefix%file1 prefix%file2
+ACTION
+print_name
+ORDER
+abs

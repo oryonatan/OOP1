@@ -1,0 +1,7 @@
+FILTER
+$ bad order example
+writable%YES
+ACTION
+print_name
+ORDER
+BADPARAM

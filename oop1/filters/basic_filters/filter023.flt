@@ -1,0 +1,10 @@
+FILTER
+$ same filter repeating a few times
+greater_than%0.01
+greater_than%0.01
+greater_than%0.01
+greater_than%0.01
+ACTION
+print_name
+ORDER
+abs

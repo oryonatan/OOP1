@@ -1,0 +1,7 @@
+FILTER
+$ copy target_dir with preceding '/' error
+file%file13.txt
+ACTION
+copy%/tmp
+ORDER
+abs

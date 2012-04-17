@@ -1,0 +1,7 @@
+FILTER
+$ Simple file filter case insensitive test
+file%FILe1.tXt
+ACTION
+print_name
+ORDER
+abs

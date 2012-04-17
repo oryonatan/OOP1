@@ -1,0 +1,7 @@
+FILTER
+$ write YES action example
+file%file2.txt
+ACTION
+write%YES
+ORDER
+abs

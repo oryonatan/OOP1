@@ -1,0 +1,7 @@
+FILTER
+$ exec yes action example
+file%file0.txt
+ACTION
+exec%YES
+ORDER
+abs

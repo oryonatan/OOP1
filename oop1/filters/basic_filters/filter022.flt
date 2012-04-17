@@ -1,0 +1,13 @@
+FILTER
+$ 2 Sections in one file, error in 2nd section order
+prefix%a
+ACTION
+print_name
+ORDER
+abs
+FILTER
+suffix%.txt
+ACTION
+print_name
+ORDER
+RRfile

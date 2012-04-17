@@ -1,0 +1,7 @@
+FILTER
+$ Simple file test
+file%file1.txt
+ACTION
+print_name
+ORDER
+abs

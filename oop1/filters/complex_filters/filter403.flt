@@ -1,0 +1,8 @@
+FILTER
+$ AND filter with an OR filter with NOT suffix
+greater_than%0.5 executable%NO%NOT 
+smaller_than%1
+ACTION
+print_data
+ORDER
+abs

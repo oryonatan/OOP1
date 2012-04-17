@@ -1,0 +1,10 @@
+FILTER
+$ complex filter, file order
+writable%YES executable%NO
+greater_than%0.05 
+smaller_than%1.0
+after%19/01/2012
+ACTION
+print_data
+ORDER
+file

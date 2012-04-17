@@ -1,0 +1,7 @@
+FILTER
+$ simple or filter example
+greater_than%0.5 executable%NO
+ACTION
+print_data
+ORDER
+abs

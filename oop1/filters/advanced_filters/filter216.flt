@@ -1,0 +1,7 @@
+FILTER
+$ Simple suffix%NOT test
+suffix%a.txt%NOT
+ACTION
+print_name
+ORDER
+abs

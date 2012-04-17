@@ -1,0 +1,7 @@
+FILTER
+$ last_mod action example (to past date)
+file%file4.txt
+ACTION
+last_mod%01/01/2012
+ORDER
+abs

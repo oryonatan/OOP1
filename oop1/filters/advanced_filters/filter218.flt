@@ -1,0 +1,7 @@
+FILTER
+$ file order for files in different directories
+prefix%same_name
+ACTION
+print_name
+ORDER
+file

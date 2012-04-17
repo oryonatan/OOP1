@@ -1,0 +1,7 @@
+FILTER
+$ Simple smaller_than%NOT test
+smaller_than%0.01%NOT
+ACTION
+print_name
+ORDER
+abs

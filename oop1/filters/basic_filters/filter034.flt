@@ -1,0 +1,7 @@
+FILTER
+$ prefix case insensitive test
+prefix%FiLe
+ACTION
+print_name
+ORDER
+abs

@@ -1,0 +1,7 @@
+FILTER
+$ Bad parameter to executable
+executable%F
+ACTION
+print_name
+ORDER
+abs

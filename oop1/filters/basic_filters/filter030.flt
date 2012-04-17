@@ -1,0 +1,7 @@
+FILTER
+$ file%NOT test
+file%file1.txt%NOT
+ACTION
+print_name
+ORDER
+abs

@@ -1,0 +1,7 @@
+FILTER
+$ Simple not executable test
+executable%NO
+ACTION
+print_name
+ORDER
+abs

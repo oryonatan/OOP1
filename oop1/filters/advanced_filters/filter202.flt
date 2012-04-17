@@ -1,0 +1,7 @@
+FILTER
+$ simple or filter with not suffix on one of the literals
+prefix%file%NOT prefix%file2
+ACTION
+print_name
+ORDER
+abs

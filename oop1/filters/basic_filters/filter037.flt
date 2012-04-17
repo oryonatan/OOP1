@@ -1,0 +1,7 @@
+$ error -- comment in first line
+FILTER
+writable%YES
+ACTION
+print_name
+ORDER
+abs

@@ -1,0 +1,7 @@
+FILTER
+$ file order example
+prefix%file
+ACTION
+print_name
+ORDER
+file

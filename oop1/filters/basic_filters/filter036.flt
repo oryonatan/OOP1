@@ -1,0 +1,11 @@
+FILTER
+greater_than%0.01
+$ No filter sub-section in second section test
+ACTION
+print_name
+ORDER
+abs
+ACTION
+print_name
+ORDER
+abs

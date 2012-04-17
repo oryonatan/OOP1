@@ -1,0 +1,7 @@
+FILTER
+$ Size order example
+prefix%file
+ACTION
+print_name
+ORDER
+size

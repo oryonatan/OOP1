@@ -1,0 +1,7 @@
+FILTER
+$ Bad parameter to writable
+writable%JJJZZ
+ACTION
+print_name
+ORDER
+abs

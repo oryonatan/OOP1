@@ -1,0 +1,7 @@
+FILTER
+$ Simple suffix case insensitive test
+suffix%.txT
+ACTION
+print_name
+ORDER
+abs

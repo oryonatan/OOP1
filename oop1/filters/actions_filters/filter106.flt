@@ -1,0 +1,7 @@
+FILTER
+$ copy to existing directory
+file%file6.txt
+ACTION
+copy%outputDir
+ORDER
+abs

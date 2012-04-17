@@ -1,0 +1,7 @@
+FILTER
+$ write NO action example
+file%file3.txt
+ACTION
+write%NO
+ORDER
+abs

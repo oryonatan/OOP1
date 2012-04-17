@@ -1,0 +1,7 @@
+FILTER
+$ nested directories copy action example
+file%file10.txt
+ACTION
+copy%dir1/dir2/dir3
+ORDER
+abs

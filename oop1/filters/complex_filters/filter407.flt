@@ -1,0 +1,22 @@
+FILTER
+$ 3 Sessions in one file
+prefix%file writable%YES
+executable%YES
+ACTION
+print_data
+ORDER
+file
+FILTER
+suffix%.txt
+after%18/01/2011 writable%YES
+ACTION
+print_data
+ORDER
+file
+FILTER
+executable%YES
+before%15/01/2011 writable%YES
+ACTION
+print_data
+ORDER
+mod

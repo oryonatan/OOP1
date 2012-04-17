@@ -1,0 +1,7 @@
+FILTER
+$ Simple after test
+after%01/02/2012
+ACTION
+print_name
+ORDER
+abs
