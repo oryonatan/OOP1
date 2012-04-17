@@ -1,0 +1,26 @@
+package oop.ex1.actions;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.TreeSet;
+
+import oop.ex1.exceptions.PermissionsException;
+
+
+
+
+public abstract class Action {
+	protected String[] params;
+	protected static final String YES = "YES";
+	protected static final String NO = "NO";
+	protected static final int YES_OR_NO = 1;
+	protected static final String DATE_FORMAT = "dd/MM/yyyy";
+	protected static final int DATE = 1;
+	protected static final int SOURCE_DIR = 0;
+	protected static final int TARGET = 1;
+	
+	public Action(String[] params){
+		this.params = params;
+	}
+	public abstract void Exec(TreeSet<File> files) throws IOException, PermissionsException;
+}
