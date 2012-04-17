@@ -9,14 +9,15 @@ import java.util.TreeSet;
 
 import exceptions.PermissionsException;
 
-public class CopyAction implements Action{
+public class CopyAction extends Action{
+
 	private String target;
 
 	
-	public CopyAction(String target)
+	public CopyAction(String[] params)
 	{
-		this.target = target;
-
+		super(params);
+		target = params[SOURCE_DIR]+File.separator+params[TARGET];
 	}
 	
 	public void Exec(TreeSet<File> files) throws IOException, PermissionsException
@@ -37,7 +38,7 @@ public class CopyAction implements Action{
 			for (File pathname: files)
 			{
 				 FileInputStream fistream = new FileInputStream( pathname.getAbsolutePath() );
-				 FileOutputStream fostream = new FileOutputStream( target + "\\" +  pathname.getName() );
+				 FileOutputStream fostream = new FileOutputStream( target +File.separator+  pathname.getName() );
 		
 				 bufferedInput = new BufferedInputStream(fistream);
 				 bufferedOutput = new BufferedOutputStream(fostream);

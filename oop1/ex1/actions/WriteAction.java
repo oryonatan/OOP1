@@ -6,30 +6,28 @@ import java.util.TreeSet;
 import exceptions.BadParamException;
 import exceptions.PermissionsException;
 
-public class WriteAction implements Action{
+public class WriteAction extends Action {
 	private boolean write;
-	
-	public WriteAction(String param) throws BadParamException
-	{
-		if ("YES".equals(param) )
+
+	public WriteAction(String[] params) throws BadParamException {
+		super(params);
+		if (YES.equals(params[YES_OR_NO])) {
 			this.write = true;
-		else if ("NO".equals(param) )
+		} else if (NO.equals(params[YES_OR_NO])) {
 			this.write = false;
-		throw new BadParamException();
-			
-	}
-	public void Exec(TreeSet<File> files) throws PermissionsException
-	{
-		try
-		{
-			for (File pathname: files)
-			{
-				pathname.setWritable(write);	
-			}
+		} else {
+			throw new BadParamException();
 		}
-		catch(SecurityException e){
+
+	}
+
+	public void Exec(TreeSet<File> files) throws PermissionsException {
+		try {
+			for (File pathname : files) {
+				pathname.setWritable(write);
+			}
+		} catch (SecurityException e) {
 			throw new PermissionsException();
 		}
 	}
 }
-

@@ -9,16 +9,17 @@ import java.text.ParsePosition;
 import exceptions.BadParamException;
 import exceptions.PermissionsException;
 
-public class LastModAction implements Action{
-	private Date lastmod;
+public class LastModAction extends Action{
 
-	public LastModAction(String param) throws BadParamException
+
+	public LastModAction(String[] params) throws BadParamException
 	{
-		lastmod = new SimpleDateFormat("dd/MM/yyyy").parse(param, new ParsePosition(0));
-			
+		super(params);
 	}
+	
 	public void Exec(TreeSet<File> files) throws PermissionsException
 	{
+		Date lastmod = new SimpleDateFormat(DATE_FORMAT).parse(params[DATE], new ParsePosition(0));
 		try
 		{
 			for (File pathname: files)

@@ -87,7 +87,7 @@ public class FilterParser {
 			// Notice that using newInstance a class without getting the correct
 			// ctor for the param type , will not allow passing parameters.
 			Constructor<? extends FileFilter> ctor = filterType
-					.getConstructor(new Class[] { String.class });
+					.getConstructor(String.class);
 			filter = ctor.newInstance(params[ARGUMENTS]);
 			// Negate negatives
 			if ((params.length == NOT_FILTER_LENGTH)
@@ -96,6 +96,7 @@ public class FilterParser {
 			}
 			return filter;
 		} catch (java.lang.Exception e) {
+			e.printStackTrace();
 			throw new BadParamException();
 		}
 

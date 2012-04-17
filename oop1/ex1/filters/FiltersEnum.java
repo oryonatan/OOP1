@@ -12,9 +12,9 @@ import exceptions.BadParamException;
 public enum FiltersEnum{
 	BEFORE(BeforeFilter.class),
 	AFTER(AfterFilter.class),
-	GREATE_THEN(GreaterThanFilter.class),
+	GREATER_THAN(GreaterThanFilter.class),
 	SMALLER_THAN(SmallerThanFilter.class),
-	PERFIX(StartsWithFilter.class),
+	PREFIX(StartsWithFilter.class),
 	SUFFIX(EndsWithFilter.class),
 	WRITABLE(WriteableFilter.class),
 	EXECUTABLE(ExecFilter.class),

@@ -55,7 +55,7 @@ public class Block {
 	 */
 	public void run() throws BadParamException {
 		listAndFilterFilesOrdered();
-		doactions();		
+		doActions();		
 		printComments();
 	}
 
@@ -71,13 +71,15 @@ public class Block {
 	/**Runs all the actions on the block
 	 * @throws BadParamException
 	 */
-	private void doactions() throws BadParamException {
+	private void doActions() throws BadParamException {
 		for (Action action:actions){
 			try {
 				action.Exec(files);
 			} catch (IOException e) {
+				System.err.println(action);
 				throw new BadParamException();
 			} catch (PermissionsException e) {
+
 				throw new BadParamException();
 			}
 		}

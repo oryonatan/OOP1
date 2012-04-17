@@ -7,29 +7,28 @@ import java.util.TreeSet;
 import exceptions.BadParamException;
 import exceptions.PermissionsException;
 
-public class ExecAction implements Action{
+public class ExecAction extends Action {
 	private boolean exec;
-	
-	
-	public ExecAction(String param) throws BadParamException
-	{
-		if ("YES".equals(param) )
+
+	public ExecAction(String[] params) throws BadParamException {
+		super(params);
+		if (YES.equals(params[YES_OR_NO]))
 			this.exec = true;
-		else if ("NO".equals(param) )
+		else if (NO.equals(params[YES_OR_NO]))
 			this.exec = false;
-		throw new BadParamException();
-			
-	}
-	public void Exec(TreeSet<File> files) throws IOException, PermissionsException
-	{
-		try
-		{
-			for (File pathname: files)
-			{
-				pathname.setExecutable(exec);	
-			}
+		else {
+			throw new BadParamException();
 		}
-		catch(SecurityException e){
+
+	}
+
+	public void Exec(TreeSet<File> files) throws IOException,
+			PermissionsException {
+		try {
+			for (File pathname : files) {
+				pathname.setExecutable(exec);
+			}
+		} catch (SecurityException e) {
 			throw new PermissionsException();
 		}
 	}

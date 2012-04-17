@@ -8,10 +8,10 @@ import exceptions.BadParamException;
 
 
 public enum OrdersEnum {
-	abs(absComparator.class), 
-	file(fileComparator.class), 
-	mod(modComparator.class), 
-	size(sizeComparator.class);
+	ABS(absComparator.class), 
+	FILE(fileComparator.class), 
+	MOD(modComparator.class), 
+	SIZE(sizeComparator.class);
 
 	public Class<? extends Comparator<File>> classType;
 

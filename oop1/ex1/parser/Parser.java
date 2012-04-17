@@ -6,9 +6,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 import actions.Action;
@@ -31,14 +30,14 @@ public class Parser {
 			//!!! throw "doesn't start with FILTER"
 		}
 		
-		int last = 1;
+		int last = 0;
 		for (int i=1; i<lines.length; i++)
 		{
 
 			if ("FILTER".equals(lines[i]))
 			{
-				last = i;
 				blocks.add(Arrays.copyOfRange(lines, last, i));
+				last = i;
 			}
 		}
 		blocks.add(Arrays.copyOfRange(lines, last, lines.length));
@@ -47,80 +46,101 @@ public class Parser {
 		
 	}
 	
-	public static ArrayList<String[]> parseComments(ArrayList<String[]> blocks)
+	public static ArrayList<String[]> parseComments(ArrayList<String[]> allStringBlocks)
 	{
-		String[] block = null;
-		ArrayList<String> newBlock = new ArrayList<String>();
-		ArrayList<String> commentsBlock= new ArrayList<String>();
+		String[] stringBlock = null;
+		ArrayList<String> blockDataPart;
+		ArrayList<String> blockCommentsPart;
+		ArrayList<String[]> allCommentBlocks = new ArrayList<String[]>();;
 		
-		ArrayList<String[]> commentsBlocks= null;
-		for (int i=0; i< Array.getLength(blocks); i++)
+		for (int i=0; i< allStringBlocks.size(); i++)
 		{
-			block = blocks.get(i);
-			for (String line: block)
+			
+			stringBlock = allStringBlocks.get(i);
+			blockDataPart = new ArrayList<String>();
+			blockCommentsPart= new ArrayList<String>();
+			for (String line: stringBlock)
 			{
 				if (line.startsWith("$"))
 				{
-					commentsBlock.add(line);
+					blockCommentsPart.add(line);
 				}
 				else
 				{
-					newBlock.add(line);
+					blockDataPart.add(line);
 				}
 			}
-			blocks.set(i, (newBlock.toArray(new String[newBlock.size()])) );
+			allStringBlocks.set(i, (blockDataPart.toArray(new String[blockDataPart.size()])) );
+			allCommentBlocks.add(blockCommentsPart.toArray(new String[blockCommentsPart.size()])); 
 		}
-		return commentsBlocks;
+		return allCommentBlocks;
 	}
 	
-	public static String[][] parseIntoSections(String[] lines)
+	public static Block parseToBlock(String sourceDir, String[] lines, String[] comments) throws BadParamException
 	{
 		String[] filters = null;
 		String[] actions = null;
-		String[] order = null;
+		String order = null;
 		int i = 0;
 		int actionsSection = 0;
 		for (String line: lines)
 		{
+			line = line.trim();
 			if (ACTION.equals(line))
 			{
 				filters = Arrays.copyOfRange(lines, 1 , i);
 				actionsSection = i + 1 ;
+				break;
 			}
-			if (ORDER.equals(line) && actionsSection!= 0)
-			{
-				actions = Arrays.copyOfRange(lines, actionsSection, i);
-				order = Arrays.copyOfRange(lines, i + 1, lines.length);
-			}
-			else if (ORDER.equals(line) && actionsSection == 0)
-			{
-				//!!! throw section not right
-			}
+			i++;
 		}
+		if (ORDER.equals(lines[lines.length - 2]))
+		{
+			actions = Arrays.copyOfRange(lines, actionsSection, lines.length - 2);
+			order = lines[lines.length-1];
+		}
+		else if(ORDER.equals(lines[lines.length - 1]))
+		{
+			actions = Arrays.copyOfRange(lines, actionsSection, lines.length - 1 );
+			order = null;
+		}
+		else 
+		{
+			actions = Arrays.copyOfRange(lines, actionsSection, lines.length  );
+			order = null;
+		}
+		return  makeBlock(sourceDir, comments, filters,actions,order);
 		
-		return new String[][] {filters, actions, order};
+	}		
+
+	
+		
+
+	private static Block makeBlock(String sourceDir,String[] comments, String[] filters, String[] actions, String order) throws BadParamException {
+		
+		FileFilterBox blockFilters = 	FilterParser.parseLines(filters);
+		ArrayList<Action> blockActions= ActionParser.parseLines(sourceDir,actions);
+		Comparator<File> blockOrder = 	OrderParser.parseLines(order);
+		
+		return new Block(sourceDir, blockFilters, blockActions, blockOrder, comments);
 	}
 
 	public static ArrayList<Block> parse(String sourceDir,String commandsFile) throws BadParamException, IOException
 	{
 		String[] lines = readLines(commandsFile);
-		ArrayList<String[]> BlockLines = parseIntoBlocks(lines);
-		ArrayList<String[]> commentsBlocks = parseComments(BlockLines);
-		ArrayList<Block> blocks= new ArrayList<Block>() ;
-		String[][] sections = null;
+		ArrayList<String[]> blockLines = parseIntoBlocks(lines);
+		ArrayList<String[]> commentsBlocks = parseComments(blockLines);
 		
-		for (int i = 0; i < BlockLines.size(); i++)
-		{
-			String[] blockLine = BlockLines.get(i);
-			
-			sections = parseIntoSections(blockLine);
-			
-			FileFilterBox filters = 	FilterParser.parseLines(sections[0]);
-			ArrayList<Action> actions= 	ActionParser.parseLines(sourceDir,sections[1]);
-			Comparator<File> order = 	OrderParser.parseLines(sections[2]);
-			
-			blocks.add(new Block(sourceDir, filters, actions, order, commentsBlocks.get(i)));
-			
+		ArrayList<Block> blocks= new ArrayList<Block>() ;
+		
+		Block block;
+		
+		for (int i = 0; i < blockLines.size(); i++)
+		{			
+			String[] data = blockLines.get(i);
+			String[] comments = commentsBlocks.get(i);
+			block= parseToBlock(sourceDir, data, comments);	
+			blocks.add(block);	
 		}
 		return blocks;
 		
@@ -135,7 +155,7 @@ public class Parser {
 		ArrayList<String> lines = new ArrayList<String>();
 		String line = null;
 		while ((line = bufferedReader.readLine()) != null) {
-			lines.add(line);
+			lines.add(line.trim());
 		}
 		bufferedReader.close();
 		return lines.toArray(new String[lines.size()]);

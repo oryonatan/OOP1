@@ -5,7 +5,12 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.TreeSet;
 
-public class PrindDataAction implements Action{
+public class PrintDataAction extends Action{
+	
+
+	public PrintDataAction(String[] params) {
+		super(params);
+	}
 
 	public void Exec(TreeSet<File> files) throws IOException
 	{

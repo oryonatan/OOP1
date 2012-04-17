@@ -9,8 +9,8 @@ import java.io.FileFilter;
  * @author yonatan,yuli
  * 
  */
-class EndsWithFilter extends NegatableFilter implements FileFilter {
-	private String arg = new String();
+public class EndsWithFilter extends NegatableFilter implements FileFilter {
+	private String sufix;
 
 	/**
 	 * Constructor for the filter.
@@ -19,7 +19,7 @@ class EndsWithFilter extends NegatableFilter implements FileFilter {
 	 *            the suffix to look for.
 	 */
 	public EndsWithFilter(String sufix) {
-		this.arg = sufix;
+		this.sufix = sufix;
 	}
 
 	/*
@@ -29,6 +29,6 @@ class EndsWithFilter extends NegatableFilter implements FileFilter {
 	 */
 	@Override
 	public boolean accept(File pathname) {
-		return pathname.getName().endsWith(arg) ^ negative;
+		return pathname.getName().endsWith(sufix) ^ negative;
 	}
 }
