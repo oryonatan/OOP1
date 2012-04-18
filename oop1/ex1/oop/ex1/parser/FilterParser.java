@@ -97,7 +97,6 @@ public class FilterParser {
 			}
 			return filter;
 		} catch (java.lang.Exception e) {
-			e.printStackTrace();
 			throw new BadParamException();
 		}
 

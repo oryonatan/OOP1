@@ -28,6 +28,7 @@ public class MyFileScript {
 				block.run();
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(ERROR);
 			System.exit(-1);
 		}
