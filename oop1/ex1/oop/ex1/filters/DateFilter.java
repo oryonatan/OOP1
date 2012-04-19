@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import oop.ex1.exceptions.BadParamException;
-
+import oop.ex1.exceptions.FilterExceptions.DateFilterParseException;
 
 /**
  * Abstract class for filters that uses dates.
@@ -28,7 +28,7 @@ public class DateFilter extends NegatableFilter {
 		try {
 			date = new SimpleDateFormat(FORMAT).parse(dateString);
 		} catch (ParseException e) {
-			throw new BadParamException();
+			throw new DateFilterParseException();
 		}
 	}
 }

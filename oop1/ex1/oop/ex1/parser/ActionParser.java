@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import oop.ex1.actions.Action;
 import oop.ex1.actions.ActionsEnum;
+import oop.ex1.exceptions.BadOrderException;
 import oop.ex1.exceptions.BadParamException;
 
 
@@ -17,7 +18,7 @@ public class ActionParser {
 		String[] params;
 		ArrayList<Action> actions = new ArrayList<Action>();
 		for (String line : lines) {
-			params = line.split("%");
+			params = line.split(Parser.PARAMETER_SEPERATOR);
 			actions.add(ActionFactory(sourceDir, params));
 		}
 		if (actions.size() == 0 ){
@@ -32,17 +33,16 @@ public class ActionParser {
 		String[] args ;
 		Constructor<? extends Action> ctor;
 		try {
-			ctor = ActionsEnum.fromValue(params[FILTER_TYPE]).classType
-					.getConstructor(String[].class);
+			String orderName =  Parser.validateString(params[FILTER_TYPE]);
+			ctor = ActionsEnum.valueOf(orderName).classType.getConstructor(String[].class);
 			if (params.length == 1){
 				args= new String[] { sourceDir};
 			}else{
 				args = new String[] { sourceDir, params[ARGUMENTS] };
 			}
-			
 			action = ((Action) ctor.newInstance((Object) args));
 		} catch (java.lang.Exception e) {
-			throw new BadParamException();
+			throw new BadOrderException();
 		}
 		return action;
 

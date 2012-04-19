@@ -2,10 +2,12 @@ package oop.ex1.filters;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.text.ParseException;
 import java.util.Date;
 
 import oop.ex1.exceptions.BadParamException;
-import oop.ex1.orders.modComparator;
+import oop.ex1.exceptions.FilterExceptions.DateFilterParseException;
+import oop.ex1.orders.ModComparator;
 
 
 /**
@@ -20,9 +22,10 @@ public class AfterFilter extends DateFilter implements FileFilter {
 	 * 
 	 * @param dateString
 	 *            date given in the string format specified in DateFilter
-	 * @throws BadParamException
+	 * @throws DateFilterParseException 
+	 * @throws ParseException 
 	 */
-	public AfterFilter(String dateString) throws BadParamException {
+	public AfterFilter(String dateString) throws BadParamException  {
 		super(dateString);
 	}
 
@@ -33,7 +36,7 @@ public class AfterFilter extends DateFilter implements FileFilter {
 	 */
 	@Override
 	public boolean accept(File pathname) {
-		if (modComparator.isSameDay(date.getTime(), pathname.lastModified())){
+		if (ModComparator.isSameDay(date.getTime(), pathname.lastModified())){
 			return true ^ negative;
 		}
 		return date.before(new Date(pathname.lastModified())) ^ negative;

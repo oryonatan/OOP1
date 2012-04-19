@@ -1,7 +1,7 @@
 package oop.ex1.filters;
 
 /**
- * Filter that can be reversed
+ * Filter that can be reversed , return values in the accept method should be XORed with negative
  * 
  * @author yonatan,yuli
  * 

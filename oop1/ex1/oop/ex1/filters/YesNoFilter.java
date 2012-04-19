@@ -1,6 +1,7 @@
 package oop.ex1.filters;
 
 import oop.ex1.exceptions.BadParamException;
+import oop.ex1.exceptions.FilterExceptions.YesNoFilterYesNoStringException;
 
 /**
  * Filter that gets as a parameter a YES or NO , to decide how to behave
@@ -9,8 +10,8 @@ import oop.ex1.exceptions.BadParamException;
  * 
  */
 public class YesNoFilter extends NegatableFilter {
-	public static String YES = "YES";
-	public static String NO = "NO";
+	private static String YES = "YES";
+	private static String NO = "NO";
 
 	/**
 	 * /** Constructor for the filter.
@@ -24,7 +25,7 @@ public class YesNoFilter extends NegatableFilter {
 		if (yesNoString.equals(NO)) {
 			negate();
 		} else if (!yesNoString.equals(YES)) {
-			throw new BadParamException();
+			throw new YesNoFilterYesNoStringException();
 		}
 	}
 }

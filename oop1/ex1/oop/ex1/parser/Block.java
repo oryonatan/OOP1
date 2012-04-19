@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 import oop.ex1.actions.Action;
 import oop.ex1.exceptions.BadParamException;
+import oop.ex1.exceptions.BlockException;
 import oop.ex1.exceptions.PermissionsException;
 import oop.ex1.filters.FileFilterBox;
 import oop.ex1.filters.FolderFilter;
@@ -53,8 +54,9 @@ public class Block {
 
 	/**Runs the block on the given path
 	 * @throws BadParamException
+	 * @throws BlockException 
 	 */
-	public void run() throws BadParamException {
+	public void run() throws BadParamException, BlockException {
 		listAndFilterFilesOrdered();
 		doActions();		
 		printComments();
@@ -72,16 +74,14 @@ public class Block {
 	/**Runs all the actions on the block
 	 * @throws BadParamException
 	 */
-	private void doActions() throws BadParamException {
+	private void doActions() throws BadParamException,BlockException {
 		for (Action action:actions){
 			try {
 				action.Exec(files);
 			} catch (IOException e) {
-				System.err.println(action);
-				throw new BadParamException();
+				throw new BlockException();
 			} catch (PermissionsException e) {
-
-				throw new BadParamException();
+				throw new BlockException();
 			}
 		}
 	}

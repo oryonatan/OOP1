@@ -1,14 +1,15 @@
 package oop.ex1.filescript;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import oop.ex1.exceptions.BadParamException;
 import oop.ex1.parser.Block;
 import oop.ex1.parser.Parser;
 
-
-
+/**
+ * Runner for the program
+ * 
+ * @author Yuli Shapiro
+ * @author Yonathan Oren
+ * 
+ */
 public class MyFileScript {
 
 	private static final String ERROR = "ERROR";
@@ -16,20 +17,30 @@ public class MyFileScript {
 	private static final int SOURCE_DIR = 0;
 
 	/**
-	 * @param args
-	 * @throws IOException
-	 * @throws BadParamException
+	 * Main function , runs the program,
+	 * 
+	 * @param arg
+	 *            first argument is the directory to work on , the second is the
+	 *            command file
 	 */
 	public static void main(String[] args) {
 		try {
-			ArrayList<Block> blocks = Parser.parse(args[SOURCE_DIR],
-					args[COMMANDS_FILE_LOCATION]);
+			// Create blocks and run them
+			ArrayList<Block> blocks = Parser.parse(args[SOURCE_DIR],args[COMMANDS_FILE_LOCATION]);
 			for (Block block : blocks) {
 				block.run();
 			}
 		} catch (Exception e) {
-			System.err.println(ERROR);
-			System.exit(-1);
+			quit();
 		}
+	}
+
+	/**
+	 * Leaves the program with ERROR to STDERR
+	 * 
+	 */
+	public static void quit() {
+		System.err.println(ERROR);
+		System.exit(-1);
 	}
 }

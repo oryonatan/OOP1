@@ -18,8 +18,7 @@ public class FilterLine implements FileFilter {
 	 * Default empty constructor
 	 * 
 	 */
-	public FilterLine() {
-	}
+	public FilterLine(){};
 
 	/**
 	 * Constructor , adds a line line to to the line

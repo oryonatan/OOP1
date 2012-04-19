@@ -3,6 +3,8 @@ package oop.ex1.filters;
 import java.io.File;
 import java.io.FileFilter;
 
+import oop.ex1.exceptions.BadParamException;
+
 /**
  * A filter that looks for files bigger then a given size.
  * 
@@ -16,8 +18,9 @@ public class GreaterThanFilter extends FileSizeFilter implements FileFilter {
 	 * 
 	 * @param numberString
 	 *            the size as string.
+	 * @throws BadParamException 
 	 */
-	public GreaterThanFilter(String numberString) {
+	public GreaterThanFilter(String numberString) throws BadParamException {
 		super(numberString);
 	}
 

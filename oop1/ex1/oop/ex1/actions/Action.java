@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import oop.ex1.exceptions.BadParamException;
 import oop.ex1.exceptions.PermissionsException;
+import oop.ex1.exceptions.ActionExceptions.ActionParamSizeException;
 
 
 
@@ -25,7 +26,7 @@ public abstract class Action {
 	
 	public Action(String[] params,int param_length) throws BadParamException{
 		if(params.length!= param_length){
-			throw new BadParamException();
+			throw new ActionParamSizeException();
 		}
 		this.params = params;
 	}

@@ -12,6 +12,7 @@ import java.util.Comparator;
 
 import oop.ex1.actions.Action;
 import oop.ex1.exceptions.BadParamException;
+import oop.ex1.exceptions.StringCaseException;
 import oop.ex1.filters.FileFilterBox;
 
 
@@ -19,23 +20,24 @@ import oop.ex1.filters.FileFilterBox;
 public class Parser {
 	
 	
-	
+	public static final String PARAMETER_SEPERATOR = "%"; 
+	private static final String FILTER = "FILTER";
 	private static final String ORDER = "ORDER";
 	private static final String ACTION = "ACTION";
 
-	public static ArrayList<String[]> parseIntoBlocks(String[] lines)
+	public static ArrayList<String[]> parseIntoBlocks(String[] lines) throws BadParamException
 	{
 		ArrayList<String[]> blocks = new ArrayList<String[]>();
-		if (!"FILTER".equals(lines[0]))
+		if ( ! FILTER.equals(lines[0]))
 		{
-			//!!! throw "doesn't start with FILTER"
+			throw new BadParamException();
 		}
 		
 		int last = 0;
 		for (int i=1; i<lines.length; i++)
 		{
 
-			if ("FILTER".equals(lines[i]))
+			if (FILTER.equals(lines[i]))
 			{
 				blocks.add(Arrays.copyOfRange(lines, last, i));
 				last = i;
@@ -160,6 +162,13 @@ public class Parser {
 		}
 		bufferedReader.close();
 		return lines.toArray(new String[lines.size()]);
+	}
+	
+	public static String validateString(String inputString) throws StringCaseException{
+		if (inputString == inputString.toLowerCase()){
+			return inputString.toUpperCase();
+		}
+		throw new StringCaseException();
 	}
 	
 }

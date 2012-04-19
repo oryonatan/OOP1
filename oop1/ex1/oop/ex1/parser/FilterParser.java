@@ -4,6 +4,7 @@ import java.io.FileFilter;
 import java.lang.reflect.Constructor;
 
 import oop.ex1.exceptions.BadParamException;
+import oop.ex1.exceptions.ParserExceptions.IlegalFilterException;
 import oop.ex1.filters.FileFilterBox;
 import oop.ex1.filters.FilterLine;
 import oop.ex1.filters.FiltersEnum;
@@ -17,6 +18,7 @@ import oop.ex1.filters.NegatableFilter;
  * 
  */
 public class FilterParser {
+	private static final String MULTI_FILTER_SEPERATOR = " +";
 	private static final int MINIMAL_FILTER_LENGTH = 2;
 	private static final int FILTER_TYPE = 0;
 	private static final int ARGUMENTS = 1;
@@ -46,15 +48,15 @@ public class FilterParser {
 		for (String line : lines) {
 			FilterLine filtersLine = new FilterLine();
 			// Each filter in the line is seperated by a space.
-			String[] filtersInText = line.split(" +");
+			String[] filtersInText = line.split(MULTI_FILTER_SEPERATOR);
 			for (String filterInText : filtersInText) {
 				// Each filter is composed form between 2 to 3 sections
 				// seperated by an "%"
-				String[] params = filterInText.split("%");
+				String[] params = filterInText.split(Parser.PARAMETER_SEPERATOR);
 				if (params.length < MINIMAL_FILTER_LENGTH) {
 					throw new BadParamException();
 				}
-				FileFilter filter = filterGenerator(params);
+				FileFilter filter = filterFactory(params);
 				filtersLine.add(filter);
 			}
 			filterBox.addFilter(filtersLine);
@@ -72,7 +74,7 @@ public class FilterParser {
 	 * @return a new filter created from the parameters
 	 * @throws BadParamException
 	 */
-	private static FileFilter filterGenerator(String[] params)
+	private static FileFilter filterFactory(String[] params)
 			throws BadParamException {
 		FileFilter filter;
 		// If name is not in lower case - err.
@@ -80,15 +82,12 @@ public class FilterParser {
 			throw new BadParamException();
 		}
 		try {
+			String filterName =  Parser.validateString(params[FILTER_TYPE]);
 			// Deserialize the filter type from the enum.
-			
-			Class<? extends FileFilter> filterType = (Class<? extends FileFilter>) FiltersEnum
-					.fromValue(params[FILTER_TYPE]).classType;
+			Class<? extends FileFilter> filterType = 
+					(Class<? extends FileFilter>) FiltersEnum.valueOf(filterName).classType;
 			// Create constructor for the given filter , and instantiate it .
-			// Notice that using newInstance a class without getting the correct
-			// ctor for the param type , will not allow passing parameters.
-			Constructor<? extends FileFilter> ctor = filterType
-					.getConstructor(String.class);
+			Constructor<? extends FileFilter> ctor = filterType.getConstructor(String.class);
 			filter = ctor.newInstance(params[ARGUMENTS]);
 			// Negate negatives
 			if ((params.length == NOT_FILTER_LENGTH)
@@ -97,7 +96,7 @@ public class FilterParser {
 			}
 			return filter;
 		} catch (java.lang.Exception e) {
-			throw new BadParamException();
+			throw new IlegalFilterException();
 		}
 
 	}
