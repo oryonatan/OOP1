@@ -12,10 +12,11 @@ import oop.ex1.exceptions.PermissionsException;
 
 public class LastModAction extends Action{
 
+	private static final int param_length = 2;
 
 	public LastModAction(String[] params) throws BadParamException
 	{
-		super(params);
+		super(params,param_length);
 	}
 	
 	public void Exec(TreeSet<File> files) throws PermissionsException

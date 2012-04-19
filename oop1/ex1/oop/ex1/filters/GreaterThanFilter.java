@@ -9,7 +9,7 @@ import java.io.FileFilter;
  * @author yonatan,yuli
  * 
  */
-public class GreaterThanFilter extends DoubleFilter implements FileFilter {
+public class GreaterThanFilter extends FileSizeFilter implements FileFilter {
 
 	/**
 	 * Constructor for the filter.
@@ -28,7 +28,7 @@ public class GreaterThanFilter extends DoubleFilter implements FileFilter {
 	 */
 	@Override
 	public boolean accept(File pathname) {
-		return (pathname.length() > size) ^ negative;
+		return ((double)pathname.length()> size) ^ negative;
 	}
 
 }

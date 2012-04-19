@@ -10,8 +10,10 @@ import oop.ex1.exceptions.PermissionsException;
 public class WriteAction extends Action {
 	private boolean write;
 
+	private static final int param_length = 2;
+
 	public WriteAction(String[] params) throws BadParamException {
-		super(params);
+		super(params,param_length);
 		if (YES.equals(params[YES_OR_NO])) {
 			this.write = true;
 		} else if (NO.equals(params[YES_OR_NO])) {

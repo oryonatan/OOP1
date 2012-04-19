@@ -10,9 +10,10 @@ import oop.ex1.exceptions.PermissionsException;
 
 public class ExecAction extends Action {
 	private boolean exec;
+	private static final int param_length = 2;
 
 	public ExecAction(String[] params) throws BadParamException {
-		super(params);
+		super(params,param_length);
 		if (YES.equals(params[YES_OR_NO]))
 			this.exec = true;
 		else if (NO.equals(params[YES_OR_NO]))

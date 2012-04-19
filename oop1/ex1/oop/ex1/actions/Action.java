@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.TreeSet;
 
+import oop.ex1.exceptions.BadParamException;
 import oop.ex1.exceptions.PermissionsException;
 
 
@@ -19,7 +20,13 @@ public abstract class Action {
 	protected static final int SOURCE_DIR = 0;
 	protected static final int TARGET = 1;
 	
-	public Action(String[] params){
+	
+	
+	
+	public Action(String[] params,int param_length) throws BadParamException{
+		if(params.length!= param_length){
+			throw new BadParamException();
+		}
 		this.params = params;
 	}
 	public abstract void Exec(TreeSet<File> files) throws IOException, PermissionsException;

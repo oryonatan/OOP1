@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.TreeSet;
 
+import oop.ex1.exceptions.BadParamException;
+
 public class PrintDataAction extends Action{
 	
+	private static int param_length = 1;
 
-	public PrintDataAction(String[] params) {
-		super(params);
+	public PrintDataAction(String[] params) throws BadParamException {
+		super(params,param_length);
 	}
 
 	public void Exec(TreeSet<File> files) throws IOException
@@ -17,10 +20,9 @@ public class PrintDataAction extends Action{
 		for (File pathname: files)
 		{
 			printFileAttributes(pathname);			
-			System.out.print(" " + pathname.length() + " ");
+			System.out.print(" " + (double)(pathname.length())/128 + " ");
 			System.out.print(new Date(pathname.lastModified()).toString() + " ");
 			System.out.println(pathname.getCanonicalPath() );
-			
 		}
 	}
 

@@ -20,6 +20,9 @@ public class ActionParser {
 			params = line.split("%");
 			actions.add(ActionFactory(sourceDir, params));
 		}
+		if (actions.size() == 0 ){
+			throw new BadParamException();
+		}
 		return actions;
 	}
 
@@ -39,7 +42,6 @@ public class ActionParser {
 			
 			action = ((Action) ctor.newInstance((Object) args));
 		} catch (java.lang.Exception e) {
-			System.err.println(params[0]);
 			throw new BadParamException();
 		}
 		return action;

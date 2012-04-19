@@ -7,17 +7,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.TreeSet;
 
+import oop.ex1.exceptions.BadParamException;
 import oop.ex1.exceptions.PermissionsException;
 
 
 public class CopyAction extends Action{
 
 	private String target;
+	private static final int param_length = 2;
 
 	
-	public CopyAction(String[] params)
+	public CopyAction(String[] params) throws BadParamException
 	{
-		super(params);
+		super(params,param_length);
+		if (params[TARGET].startsWith("/")){
+			throw new BadParamException();
+		}
 		target = params[SOURCE_DIR]+File.separator+params[TARGET];
 	}
 	
@@ -35,7 +40,7 @@ public class CopyAction extends Action{
 			BufferedOutputStream bufferedOutput = null;
 
 	        byte[] buffer = new byte[1024];
-	        
+
 			for (File pathname: files)
 			{
 				 FileInputStream fistream = new FileInputStream( pathname.getAbsolutePath() );
@@ -44,12 +49,15 @@ public class CopyAction extends Action{
 				 bufferedInput = new BufferedInputStream(fistream);
 				 bufferedOutput = new BufferedOutputStream(fostream);
 				 		            
-		         //Keep reading from the file while there is any content
+		         int location = 0;
+				int bytesRead;
+				//Keep reading from the file while there is any content
 		         //when the end of the stream has been reached, -1 is returned
-		         while (bufferedInput.read(buffer) != -1) 
-		         {
-		        	 bufferedOutput.write(buffer);
-		         }
+		         do {
+		        	 bytesRead = bufferedInput.read(buffer,0 ,buffer.length)	 ;
+		        	 bufferedOutput.write(buffer,0,bytesRead);
+		        	 location+=bytesRead;
+		         }while (bytesRead == buffer.length);
 		         bufferedOutput.close();
 		         bufferedInput.close();	 
 			}

@@ -9,7 +9,7 @@ import java.io.FileFilter;
  * @author yonatan,yuli
  * 
  */
-public class SmallerThanFilter extends DoubleFilter implements FileFilter {
+public class SmallerThanFilter extends FileSizeFilter implements FileFilter {
 
 	/**
 	 * Constructor for the filter.

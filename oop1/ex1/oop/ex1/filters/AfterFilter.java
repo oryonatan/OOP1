@@ -5,6 +5,7 @@ import java.io.FileFilter;
 import java.util.Date;
 
 import oop.ex1.exceptions.BadParamException;
+import oop.ex1.orders.modComparator;
 
 
 /**
@@ -32,6 +33,9 @@ public class AfterFilter extends DateFilter implements FileFilter {
 	 */
 	@Override
 	public boolean accept(File pathname) {
+		if (modComparator.isSameDay(date.getTime(), pathname.lastModified())){
+			return true ^ negative;
+		}
 		return date.before(new Date(pathname.lastModified())) ^ negative;
 	}
 }

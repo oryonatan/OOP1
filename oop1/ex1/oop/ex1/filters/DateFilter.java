@@ -14,7 +14,7 @@ import oop.ex1.exceptions.BadParamException;
  * 
  */
 public class DateFilter extends NegatableFilter {
-	private static final String FORMAT = "DD/MM/YYYY";
+	private static final String FORMAT = "dd/MM/yyyy";
 	protected Date date;
 
 	/**

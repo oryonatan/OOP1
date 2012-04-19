@@ -29,7 +29,7 @@ public class NameFilter extends NegatableFilter implements FileFilter {
 	 */
 	@Override
 	public boolean accept(File pathname) {
-		return pathname.getName().equals(name) ^ negative;
+		return pathname.getName().toLowerCase().equals(name.toLowerCase()) ^ negative;
 	}
 
 }

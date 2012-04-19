@@ -5,7 +5,6 @@ import java.io.FileFilter;
 
 import oop.ex1.exceptions.BadParamException;
 
-
 /**
  * Filter that finds files with execution premission
  * 

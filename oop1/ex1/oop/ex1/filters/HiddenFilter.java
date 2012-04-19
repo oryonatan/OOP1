@@ -5,7 +5,6 @@ import java.io.FileFilter;
 
 import oop.ex1.exceptions.BadParamException;
 
-
 /**
  * filters hidden files
  * 

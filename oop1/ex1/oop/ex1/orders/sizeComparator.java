@@ -6,14 +6,14 @@ public class sizeComparator extends absComparator{
 	
 	public int compare(File fstfile, File scndfile)
 	{
-		int sizeFstFile = ((int)fstfile.length());
-		int sizeScndFile = ((int)scndfile.length());
+		Long sizeFstFile = fstfile.length();
+		Long sizeScndFile = scndfile.length();
 		
-		if (sizeFstFile - sizeScndFile == 0)
+		if (sizeFstFile.compareTo(sizeScndFile) == 0)
 		{
-			super.compare(fstfile, scndfile);
+			return super.compare(fstfile, scndfile);
 		}
-		return sizeFstFile - sizeScndFile;
+		return sizeFstFile.compareTo(sizeScndFile);
 	}
 	
 

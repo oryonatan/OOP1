@@ -65,7 +65,7 @@ public class Block {
 	 */
 	private void printComments() {
 		for (String commentString : comments){
-			System.out.println(commentString.trim());
+			System.out.println(commentString);
 		}
 	}
 

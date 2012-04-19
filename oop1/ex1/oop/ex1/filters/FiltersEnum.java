@@ -19,7 +19,8 @@ public enum FiltersEnum{
 	SUFFIX(EndsWithFilter.class),
 	WRITABLE(WriteableFilter.class),
 	EXECUTABLE(ExecFilter.class),
-	HIDDEN(HiddenFilter.class);
+	HIDDEN(HiddenFilter.class),
+	FILE(NameFilter.class);
 	
 
 	public Class<? extends FileFilter> classType;
