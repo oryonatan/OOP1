@@ -24,6 +24,7 @@ public class Parser {
 	private static final String FILTER = "FILTER";
 	private static final String ORDER = "ORDER";
 	private static final String ACTION = "ACTION";
+	private static final String DEFAULT_ORDER = "abs";
 
 	public static ArrayList<String[]> parseIntoBlocks(String[] lines) throws BadParamException
 	{
@@ -105,12 +106,12 @@ public class Parser {
 		else if(ORDER.equals(lines[lines.length - 1]))
 		{
 			actions = Arrays.copyOfRange(lines, actionsSection, lines.length - 1 );
-			order = null;
+			order = DEFAULT_ORDER;
 		}
 		else 
 		{
 			actions = Arrays.copyOfRange(lines, actionsSection, lines.length  );
-			order = null;
+			order = DEFAULT_ORDER;
 		}
 		return  makeBlock(sourceDir, comments, filters,actions,order);
 		
@@ -164,8 +165,16 @@ public class Parser {
 		return lines.toArray(new String[lines.size()]);
 	}
 	
+	/**
+	 * Validate that a string is in lower case and uppercase it
+	 * 
+	 * @param inputString
+	 *            the string from the command file
+	 * @return the string , uppercased 
+	 * @throws StringCaseException
+	 */
 	public static String validateString(String inputString) throws StringCaseException{
-		if (inputString == inputString.toLowerCase()){
+		if (inputString.equals(inputString.toLowerCase())){
 			return inputString.toUpperCase();
 		}
 		throw new StringCaseException();

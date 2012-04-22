@@ -8,9 +8,8 @@ import oop.ex1.exceptions.ParserExceptions.IllegalOrderException;
 import oop.ex1.orders.OrdersEnum;
 
 public class OrderParser {
-	private static final String DEFAULT = "ABS";
-
-	public static Comparator<File> parseLines(String order)	throws BadParamException {
+	public static Comparator<File> parseLines(String order)
+			throws BadParamException {
 		return OrderFactory(order);
 	}
 
@@ -19,12 +18,7 @@ public class OrderParser {
 		line = Parser.validateString(line);
 		Comparator<File> comp = null;
 		try {
-			if (line == null)
-				//Return ABS
-				comp = (Comparator<File>) OrdersEnum.valueOf(DEFAULT).classType.newInstance();
-			else {
-				comp = (Comparator<File>) OrdersEnum.valueOf(line).classType.newInstance();
-			}
+			comp = (Comparator<File>) OrdersEnum.valueOf(line).classType.newInstance();
 		} catch (java.lang.Exception e) {
 			throw new IllegalOrderException();
 		}
