@@ -9,8 +9,12 @@ import oop.ex1.exceptions.PermissionsException;
 import oop.ex1.exceptions.ActionExceptions.ActionParamSizeException;
 
 
-
-
+/**
+ * 
+ * 
+ * @author yuli
+ *
+ */
 public abstract class Action {
 	protected String[] params;
 	protected static final String YES = "YES";

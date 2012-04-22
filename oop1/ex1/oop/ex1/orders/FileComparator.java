@@ -3,7 +3,7 @@ package oop.ex1.orders;
 import java.io.File;
 
 /**
- * Comparator for specific file name
+ * Lexicographic order comparator for file names
  * 
  * @author yonatan,yuli
  * 
@@ -18,6 +18,7 @@ public class FileComparator extends AbsComparator {
 	public int compare(File fstfile, File scndfile) {
 		String nameFstFile = ((File) fstfile).getName();
 		String nameScndFile = ((File) scndfile).getName();
+		// If the same name - do ABS compare
 		if (nameFstFile.compareTo(nameScndFile) == 0) {
 			return super.compare(fstfile, scndfile);
 		}

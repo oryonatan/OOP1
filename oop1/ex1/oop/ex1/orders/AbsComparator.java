@@ -6,8 +6,10 @@ import java.util.Comparator;
 
 import oop.ex1.exceptions.AbsComperatorIOError;
 
-/**Lexicographic order comparator
- * @author yuli,to
+/**
+ * Lexicographic order comparator for full path names
+ * 
+ * @author yuli,yonatan
  *
  */
 public class AbsComparator implements Comparator<File> {
