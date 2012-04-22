@@ -1,9 +1,15 @@
 package oop.ex1.actions;
 
-import oop.ex1.exceptions.BadParamException;
 
 
 
+
+/**
+ * Enum containing actions type classes , used for dynamic generation of actions
+ * 
+ * @author yuli
+ *
+ */
 public enum ActionsEnum {
 	PRINT_DATA(PrintDataAction.class),
 	PRINT_NAME(PrintNameAction.class),
@@ -25,7 +31,7 @@ public enum ActionsEnum {
 	 * @param actionName the name of the filter needed
 	 * @return filter class appropriate for the name.
 	 * @throws BadParamException
-	 */
+	 *//**
 	public static ActionsEnum fromValue(String actionName) throws BadParamException{
 		if (actionName != null){
 			//Iterate over values()
@@ -37,5 +43,5 @@ public enum ActionsEnum {
 			}
 		}
 		throw new BadParamException();
-	}
+	}*/
 }

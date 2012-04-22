@@ -7,14 +7,28 @@ import java.util.TreeSet;
 
 import oop.ex1.exceptions.BadParamException;
 
+/**
+ * An actions which prints file information to the standard input (STDOUT)
+ * 
+ * @author yuli
+ *
+ */
 public class PrintDataAction extends Action{
 	
 	private static int param_length = 1;
 
+	/**
+	 * @param params -  an array which suppose to hold no strings because
+	 * 					the action print_data doesn't get any parameters
+	 * @throws BadParamException
+	 */
 	public PrintDataAction(String[] params) throws BadParamException {
 		super(params,param_length);
 	}
 
+	/* (non-Javadoc)
+	 * @see oop.ex1.actions.Action#Exec(java.util.TreeSet)
+	 */
 	public void Exec(TreeSet<File> files) throws IOException
 	{
 		for (File pathname: files)
@@ -26,6 +40,13 @@ public class PrintDataAction extends Action{
 		}
 	}
 
+	/**
+	 * Prints file's attributes (   "h" - for hidden,
+	 * 								"w" - for writable,
+	 * 								"x" - for executable)
+	 * 
+	 * @param pathname - the file whos'e attributes we want to print
+	 */
 	private void printFileAttributes(File pathname) {
 		if (pathname.isHidden())
 			System.out.print("h");
