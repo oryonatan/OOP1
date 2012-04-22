@@ -15,7 +15,7 @@ import oop.ex1.exceptions.ActionExceptions.ActionCopyAbsPathException;
 /**
  * An action which copies files to the given target directory
  * 
- * @author yuli
+ * @author yuli,yonatan
  *
  */
 public class CopyAction extends Action {
