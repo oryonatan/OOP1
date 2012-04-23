@@ -29,12 +29,6 @@ public class Block {
 	TreeSet<File> files ;
 	private String path;
 
-/*	public static void main(String[] args) throws BadParamException {
-		FileFilterBox fBox = new FileFilterBox();
-		fBox.addFilter(new AfterFilter("01/01/1995"));
-		Block b = new Block(fBox, null,new modComparator());
-		b.run("C:\\Octave\\3.2.4_gcc-4.4.0\\bin");
-	}*/
 
 	/**Block Constructor
 	 * @param filters filterBox of the filters

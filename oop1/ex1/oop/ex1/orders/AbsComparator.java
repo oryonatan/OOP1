@@ -13,8 +13,11 @@ import oop.ex1.exceptions.AbsComperatorIOError;
  *
  */
 public class AbsComparator implements Comparator<File> {
+	/* (non-Javadoc)
+	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	 */
 	public int compare(File fstfile, File scndfile) {
-
+		// compares file's full name
 		String nameFstFile = null;
 		String nameScndFile = null;
 		try {

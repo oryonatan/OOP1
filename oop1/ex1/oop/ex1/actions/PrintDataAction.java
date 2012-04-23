@@ -8,7 +8,7 @@ import java.util.TreeSet;
 import oop.ex1.exceptions.BadParamException;
 
 /**
- * An actions which prints file information to the standard input (STDOUT)
+ * An actions which prints file information to the standard output (STDOUT)
  * 
  * @author yuli
  *
@@ -33,7 +33,8 @@ public class PrintDataAction extends Action{
 	{
 		for (File pathname: files)
 		{
-			printFileAttributes(pathname);			
+			printFileAttributes(pathname);		
+			//Convert to KB
 			System.out.print(" " + (double)(pathname.length())/128 + " ");
 			System.out.print(new Date(pathname.lastModified()).toString() + " ");
 			System.out.println(pathname.getCanonicalPath() );

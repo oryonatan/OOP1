@@ -1,9 +1,6 @@
 package oop.ex1.actions;
 
 
-
-
-
 /**
  * Enum containing actions type classes , used for dynamic generation of actions
  * 
@@ -20,6 +17,9 @@ public enum ActionsEnum {
 	
 	public Class<? extends Action> classType;
 	
+	/**
+	 * @param classType - the class type to get
+	 */
 	ActionsEnum(Class<? extends Action> classType)
 	{
 		this.classType = (Class<? extends Action>) classType;

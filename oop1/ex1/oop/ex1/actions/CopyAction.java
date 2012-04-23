@@ -37,8 +37,15 @@ public class CopyAction extends Action {
 		target = params[SOURCE_DIR] + File.separator + params[TARGET];
 	}
 
+	/* (non-Javadoc)
+	 * @see oop.ex1.actions.Action#Exec(java.util.TreeSet)
+	 */
 	public void Exec(TreeSet<File> files) throws IOException,
 			PermissionsException {
+		/*
+		 * copies the files by reading buffered input from 
+		 * the source file and writing it to the destination file 
+		 */
 		try {
 			File ftarget = new File(target);
 			

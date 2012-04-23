@@ -10,7 +10,7 @@ import oop.ex1.exceptions.ActionExceptions.ActionParamSizeException;
 
 
 /**
- * 
+ * An abstract class which represents an action
  * 
  * @author yuli
  *
@@ -26,13 +26,27 @@ public abstract class Action {
 	protected static final int TARGET = 1;
 	
 	
-	
-	
+	/**
+	 * Checks if the action received the right amount of parameters,
+	 * should be done in all actions.
+	 * 
+	 * @param params 		- an array string of the parameters which the action recieves 
+	 * 						( including source directory)
+	 * @param param_length	- the amount of parameters in the array 
+	 * @throws BadParamException
+	 */
 	public Action(String[] params,int param_length) throws BadParamException{
 		if(params.length!= param_length){
 			throw new ActionParamSizeException();
 		}
 		this.params = params;
 	}
+	/**
+	 * The task which the action should do on the files
+	 * 
+	 * @param files - the input files that the actions executes on them 
+	 * @throws IOException
+	 * @throws PermissionsException
+	 */
 	public abstract void Exec(TreeSet<File> files) throws IOException, PermissionsException;
 }

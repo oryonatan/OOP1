@@ -19,6 +19,12 @@ import oop.ex1.filters.FileFilterBox;
 
 
 
+/**
+ * Parses the command file and returns an arraylist of blocks
+ * 
+ * @author yuli
+ *
+ */
 public class Parser {
 	
 	
@@ -110,6 +116,13 @@ public class Parser {
 	}
 	
 	
+	/**
+	 * Returns the subsections names in an arraylist.
+	 * if you want to add subsection to the parser, 
+	 * all you need to do is to add it to the subsections enum 
+	 * 
+	 * @return
+	 */
 	private static ArrayList<String> getSubsectionNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
@@ -121,10 +134,10 @@ public class Parser {
 	}
 	/**
 	 * Parses a block of lines (holds (FILTER, ACTION, ORDER))
-	 * into subsections of filters, actions and lines and makes
+	 * into subsections of filters, actions and order and makes
 	 * an object of type Block from them
 	 * 
-	 * @param sourceDir	- the source dir from the project's args
+	 * @param sourceDir	- the source directory from the project's args
 	 * @param lines		- a block of lines (holds (FILTER, ACTION, ORDER))
 	 * @param comments	- a block of comments
 	 * @return - an Object of type Block
@@ -137,13 +150,23 @@ public class Parser {
 		String[] actions = null;
 		String order = DEFAULT_ORDER;
 		boolean orderFound = false; 
+		// First subsection to be found is FILTER
 		Subsections subsection = Subsections.FILTER;
 		int lastsection = 0;
+		
+		/* the loop searches for the different subsections names
+		 * If it found one, it first checks case sensitivity
+		 * and correct order of subsections, and then 
+		 * through the case switch it copies the different 
+		 * subsections
+		 */
 		for (int i = 0; i < lines.length; i++) {
 			if (names.contains(lines[i].toUpperCase())) {
+				// checks that the order of the subsections found is correct
 				if (!(subsection.toString().equals(lines[i]))) {
 					throw new IllegalOrderException();
 				}
+				// checks if there is cases sensitivity issue
 				if (!lines[i].equals(lines[i].toUpperCase())) {
 					throw new StringCaseException();
 				}
@@ -165,6 +188,7 @@ public class Parser {
 				}
 			}
 		}
+		// in case we didn't find ORDER subsection
 		if (!orderFound)
 			actions = Arrays.copyOfRange(lines, lastsection, lines.length);
 		return makeBlock(sourceDir, comments, filters, actions, order);

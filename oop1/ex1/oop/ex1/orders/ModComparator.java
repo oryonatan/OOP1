@@ -36,6 +36,7 @@ public class ModComparator extends AbsComparator {
 	 * @see oop.ex1.orders.absComparator#compare(java.io.File, java.io.File)
 	 */
 	public int compare(File fstfile, File scndfile) {
+		// compares dates
 		Long fstFileLastMod = fstfile.lastModified();
 		Long scndFileLastMod = scndfile.lastModified();
 		// If in the same day - do ABS compare

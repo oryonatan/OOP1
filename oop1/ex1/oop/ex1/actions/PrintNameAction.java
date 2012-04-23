@@ -8,7 +8,7 @@ import oop.ex1.exceptions.BadParamException;
 
 
 /**
- * An action which prints file name to the standard input (STDOUT)
+ * An action which prints file name to the standard output (STDOUT)
  * 
  * @author yuli
  *
