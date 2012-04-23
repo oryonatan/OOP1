@@ -26,14 +26,6 @@ public class FilterParser {
 	private static final int NOT_FILTER_LENGTH = NEGATIVE + 1;
 	private static final Object NOT = "NOT";
 
-	/*
-	 * public static void main(String[] args){ String[] strs =
-	 * {"before%11/12/2000%NOT smaller_than%1000", "before%11/12/1900",
-	 * "before%11/12/1232%NOT"}; try { FileFilterBox fBox = parseLines(strs);
-	 * System.out.println(fBox); } catch (BadParamException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } }
-	 */
-
 	/**
 	 * Creates a filter box from a list of files with filters string inside them
 	 * 

@@ -51,7 +51,8 @@ FilterParser.java 	- a parser which parses an "FILTER" subsection and generates
 							filters accordingly
 OrderParser.java	- a parser which parses an "ORDER" subsection and generates
 							orders accordingly
-Parser.java			- a parser which parses the command file 
+Parser.java			- a parser which parses the command file
+Subsection  		- enum containing names of subsections.
 
 Directory Exceptions:
 AbsComperatorIOError.java					-Abs comparator failed to call the GetCannonicalPath 

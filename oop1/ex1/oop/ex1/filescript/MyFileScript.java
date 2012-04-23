@@ -2,7 +2,6 @@ package oop.ex1.filescript;
 import java.util.ArrayList;
 
 import oop.ex1.exceptions.ArgsNumException;
-import oop.ex1.exceptions.BadParamException;
 import oop.ex1.parser.Block;
 import oop.ex1.parser.Parser;
 

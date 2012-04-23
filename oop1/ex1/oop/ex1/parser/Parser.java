@@ -25,8 +25,6 @@ public class Parser {
 	public static final String PARAMETER_SEPERATOR = "%"; 
 	private static final String COMMNET_PREFIX = "$";
 	private static final String FILTER = "FILTER";
-	private static final String ORDER = "ORDER";
-	private static final String ACTION = "ACTION";
 	private static final String DEFAULT_ORDER = "abs";
 
 	/**
@@ -137,7 +135,8 @@ public class Parser {
 		ArrayList<String> names = getSubsectionNames();
 		String[] filters = null;
 		String[] actions = null;
-		String order = null;
+		String order = DEFAULT_ORDER;
+		boolean orderFound = false; 
 		Subsections subsection = Subsections.FILTER;
 		int lastsection = 0;
 		for (int i = 0; i < lines.length; i++) {
@@ -153,66 +152,23 @@ public class Parser {
 					subsection = Subsections.ACTION;
 					break;
 				case ACTION:
-					filters = Arrays.copyOfRange(lines, 0, i);
-					lastsection = i;
+					filters = Arrays.copyOfRange(lines, 1, i);
+					lastsection = i+1;
 					subsection = Subsections.ORDER;
 					break;
 				case ORDER:
+					orderFound = true; 
 					actions = Arrays.copyOfRange(lines, lastsection, i);
-					if (i == lines.length)
-						order = null;
-					else
+					if (i != lines.length-1)
 						order = new String(lines[i + 1]);
 					break;
 				}
 			}
 		}
+		if (!orderFound)
+			actions = Arrays.copyOfRange(lines, lastsection, lines.length);
 		return makeBlock(sourceDir, comments, filters, actions, order);
 	}
-		
-		
-		/*
-		String[] filters = null;
-		String[] actions = null;
-		String order = null;
-		int i = 0;
-		int actionsSection = 0;
-
-		while( !ACTION.equals(lines[i]))
-		{
-			i++;
-			if (i == lines.length)
-			{
-				// !!! throw bad subsection name
-			}
-		}
-		
-		filters = Arrays.copyOfRange(lines, 1 , i);
-		actionsSection = i + 1 ;
-
-			
-		
-		if (ORDER.equals(lines[lines.length - 2]))
-		{
-			actions = Arrays.copyOfRange(lines, actionsSection, lines.length - 2);
-			order = lines[lines.length-1];
-		}
-		else if(ORDER.equals(lines[lines.length - 1]))
-		{
-			actions = Arrays.copyOfRange(lines, actionsSection, lines.length - 1 );
-			order = DEFAULT_ORDER;
-		}
-		else 
-		{
-			actions = Arrays.copyOfRange(lines, actionsSection, lines.length  );
-			order = DEFAULT_ORDER;
-		}
-		return  makeBlock(sourceDir, comments, filters,actions,order);
-		
-	}		
-
-	
-	*/
 
 	/**
 	 * Makes an object of type Block 
