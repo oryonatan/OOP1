@@ -13,6 +13,7 @@ import java.util.Comparator;
 import oop.ex1.actions.Action;
 import oop.ex1.exceptions.BadParamException;
 import oop.ex1.exceptions.StringCaseException;
+import oop.ex1.exceptions.ParserExceptions.IllegalOrderException;
 import oop.ex1.filters.FileFilterBox;
 
 
@@ -111,7 +112,15 @@ public class Parser {
 	}
 	
 	
-	
+	private static ArrayList<String> getSubsectionNames()
+	{
+		ArrayList<String> names = new ArrayList<String>();
+		for (Subsections section: Subsections.values())
+		{
+			names.add(section.toString());
+		}
+		return names;
+	}
 	/**
 	 * Parses a block of lines (holds (FILTER, ACTION, ORDER))
 	 * into subsections of filters, actions and lines and makes
@@ -123,8 +132,46 @@ public class Parser {
 	 * @return - an Object of type Block
 	 * @throws BadParamException
 	 */
-	public static Block parseToBlock(String sourceDir, String[] lines, String[] comments) throws BadParamException
-	{
+	public static Block parseToBlock(String sourceDir, String[] lines,
+			String[] comments) throws BadParamException {
+		ArrayList<String> names = getSubsectionNames();
+		String[] filters = null;
+		String[] actions = null;
+		String order = null;
+		Subsections subsection = Subsections.FILTER;
+		int lastsection = 0;
+		for (int i = 0; i < lines.length; i++) {
+			if (names.contains(lines[i].toUpperCase())) {
+				if (!(subsection.toString().equals(lines[i]))) {
+					throw new IllegalOrderException();
+				}
+				if (!lines[i].equals(lines[i].toUpperCase())) {
+					throw new StringCaseException();
+				}
+				switch (subsection) {
+				case FILTER:
+					subsection = Subsections.ACTION;
+					break;
+				case ACTION:
+					filters = Arrays.copyOfRange(lines, 0, i);
+					lastsection = i;
+					subsection = Subsections.ORDER;
+					break;
+				case ORDER:
+					actions = Arrays.copyOfRange(lines, lastsection, i);
+					if (i == lines.length)
+						order = null;
+					else
+						order = new String(lines[i + 1]);
+					break;
+				}
+			}
+		}
+		return makeBlock(sourceDir, comments, filters, actions, order);
+	}
+		
+		
+		/*
 		String[] filters = null;
 		String[] actions = null;
 		String order = null;
@@ -165,7 +212,7 @@ public class Parser {
 	}		
 
 	
-		
+	*/
 
 	/**
 	 * Makes an object of type Block 
@@ -255,5 +302,8 @@ public class Parser {
 		}
 		throw new StringCaseException();
 	}
+
+	
+	
 	
 }
