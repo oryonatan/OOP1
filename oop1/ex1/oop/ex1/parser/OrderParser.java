@@ -7,18 +7,39 @@ import oop.ex1.exceptions.BadParamException;
 import oop.ex1.exceptions.ParserExceptions.IllegalOrderException;
 import oop.ex1.orders.OrdersEnum;
 
+/**
+ * Parser for orders
+ * 
+ * @author Yuli
+ *
+ */
 public class OrderParser {
+	
+	/**
+	 * creates an order ( which is a comparator )
+	 * 
+	 * @param order - order name
+	 * @return
+	 * @throws BadParamException
+	 */
 	public static Comparator<File> parseLines(String order)
 			throws BadParamException {
+		order = Parser.validateString(order);
 		return OrderFactory(order);
 	}
 
-	private static Comparator<File> OrderFactory(String line)
+	/**
+	 * @param order - order name
+	 * @return
+	 * @throws BadParamException
+	 */
+	private static Comparator<File> OrderFactory(String order)
 			throws BadParamException {
-		line = Parser.validateString(line);
+		
 		Comparator<File> comp = null;
 		try {
-			comp = (Comparator<File>) OrdersEnum.valueOf(line).classType.newInstance();
+			// Create constructor for the given filter , and instantiate it .
+			comp = (Comparator<File>) OrdersEnum.valueOf(order).classType.newInstance();
 		} catch (java.lang.Exception e) {
 			throw new IllegalOrderException();
 		}
